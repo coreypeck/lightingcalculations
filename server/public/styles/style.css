@@ -1,0 +1,15 @@
+.center{
+  text-align: center;
+}
+ul li{
+  background-color: goldenrod;
+  border: 2px solid darkgoldenrod;
+  border-radius: 5px;
+  margin-bottom: 2px;
+}
+.centerpiece{
+  width: 66%;
+  height: 450px;
+  background-color: goldenrod;
+  border: 2px solid darkgoldenrod;
+}
