@@ -2,32 +2,34 @@
 <html>
 
 <head>
-    <title>SVC Data Manager</title>
+    <title>Lighting Formulas</title>
     <link rel="stylesheet" href="public/vendors/bootstrap.min.css" />
     <link rel="stylesheet" href="public/styles/style.css" />
     <script type="text/javascript" src="public/vendors/angular.min.js"></script>
     <script type="text/javascript" src="public/vendors/angular-route.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
     <script type="text/javascript" src="public/scripts/clientApp.js"></script>
     <script type="text/javascript" src="public/scripts/controllers/userController.js"></script>
 </head>
 
 <body ng-app="myApp">
-    <header>
-        <div class="header_image"></div>
-        <h2 id="headText">Alex App</h2>
-    </header>
     <main ng-controller="userController">
         <div class="container" >
             <div class="row">
-                <div class="col-md-3" ng-show="sidebar">
+                <div class="col-md-2 removePaddingRight" ng-show="sidebar">
                   <ul class="center">
-                    <li ng-repeat="category in categoryArray">
+                    <li class="makeTall" ng-repeat="category in categoryArray">
                       <span ng-click="makeTrue(category)">{{category}}</span>
                     </li>
                   </ul>
                 </div>
-                <div class="col-md-8 centerpiece">
+                <div class="col-md-9 centerpiece">
                     <button ng-click=showSidebar()>Sidebar</button>
+                    <div ng-repeat="string in categoryArray">
+                      <!-- <p ng-show=>
+                        {{string}}
+                      </p> -->
+                    </div>
                 </div>
             </div>
         </div>

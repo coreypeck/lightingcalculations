@@ -1,15 +1,31 @@
-.center{
-  text-align: center;
+.center {
+    text-align: center;
+    padding-left: 0px;
 }
-ul li{
-  background-color: goldenrod;
-  border: 2px solid darkgoldenrod;
-  border-radius: 5px;
-  margin-bottom: 2px;
+
+.removePaddingRight {
+    padding-right: 0px;
+    padding-left: 0px;
 }
-.centerpiece{
-  width: 66%;
-  height: 450px;
-  background-color: goldenrod;
-  border: 2px solid darkgoldenrod;
+
+ul {}
+
+ul li {
+    list-style-type: none;
+    background-color: goldenrod;
+    border: 2px solid darkgoldenrod;
+    border-radius: 5px;
+    margin-bottom: 2px;
+    font-size: 11px;
+}
+
+.makeTall{
+  padding: 5px 0 5px 0;
+}
+
+.centerpiece {
+    width: 66%;
+    height: 750px;
+    background-color: goldenrod;
+    border: 2px solid darkgoldenrod;
 }

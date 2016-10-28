@@ -1,4 +1,4 @@
-myApp.controller('userController', ['$scope', '$http', function($scope, $http) {
+myApp.controller('userController', ['$scope', '$http', '$animate', function($scope, $http, $animate) {
     $scope.showSidebar = function() {
         console.log("fuck");
         if ($scope.sidebar) {
@@ -9,15 +9,15 @@ myApp.controller('userController', ['$scope', '$http', function($scope, $http) {
     }
     $scope.categoryArray = ["2-Point Bridles",
         "3-Point Bridles",
-        "Avg Light Level (area)",
+        "Avg Light Lvl (area)",
         "Beam",
         "Cable",
         "Candlepower",
         "Footcandles",
-        "Footcandles and Lumens",
+        "Footcandles & Lms",
         "Horizontal Breastline",
         "Length Conv",
-        "Light Level (point)",
+        "Light Lvl (point)",
         "Mechanical Adv",
         "Point Load",
         "Power",
@@ -25,7 +25,18 @@ myApp.controller('userController', ['$scope', '$http', function($scope, $http) {
         "Truss",
         "Weight Conv"
     ];
+    $scope.showingArray = [];
     $scope.makeTrue = function(category){
-      console.log(category)
+      console.log(category);
+      $scope.showingArray = [];
+      $scope.showingArray.push(category);
+      $scope.sidebar = false;
+      $scope.categoryArray.forEach(function(string){
+        if($scope.showingArray[0] == category){
+          return;
+        }else{
+          $scope[string] = false;
+        }
+      });
     };
 }]);
