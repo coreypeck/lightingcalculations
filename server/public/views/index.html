@@ -14,21 +14,67 @@
 
 <body ng-app="myApp">
     <main ng-controller="userController">
-        <div class="container" >
+        <div class="container">
             <div class="row">
                 <div class="col-md-2 removePaddingRight" ng-show="sidebar">
-                  <ul class="center">
-                    <li class="makeTall" ng-repeat="category in categoryArray">
-                      <span ng-click="makeTrue(category)">{{category}}</span>
-                    </li>
-                  </ul>
+                    <ul class="center">
+                        <li class="makeTall" ng-repeat="category in categoryArray">
+                            <span ng-click="makeTrue(category)">{{category}}</span>
+                        </li>
+                    </ul>
                 </div>
                 <div class="col-md-9 centerpiece">
                     <button ng-click=showSidebar()>Sidebar</button>
-                    <div ng-repeat="string in categoryArray">
-                      <!-- <p ng-show=>
-                        {{string}}
-                      </p> -->
+                    <div ng-show="twoPointBridles">
+                        twoPointBridles
+                    </div>
+                    <div ng-show="threePointBridles">
+                        threePointBridles
+                    </div>
+                    <div ng-show="avgLightArea">
+                        avgLightArea
+                    </div>
+                    <div ng-show="beam">
+                        beam
+                    </div>
+                    <div ng-show="cable">
+                        cable
+                    </div>
+                    <div ng-show="candlepower">
+                        candlepower
+                    </div>
+                    <div ng-show="footcandles">
+                        footcandles
+                    </div>
+                    <div ng-show="footcandlesAndLms">
+                        footcandlesAndLms
+                    </div>
+                    <div ng-show="horizontalBreastline">
+                        horizontalBreastline
+                    </div>
+                    <div ng-show="lengthConv">
+                        lengthConv
+                    </div>
+                    <div ng-show="lightLvlPoint">
+                        lightLvlPoint
+                    </div>
+                    <div ng-show="mechanicalAdv">
+                        mechanicalAdv
+                    </div>
+                    <div ng-show="pointLoad">
+                        pointLoad
+                    </div>
+                    <div ng-show="power">
+                        power
+                    </div>
+                    <div ng-show="resultantForces">
+                        resultantForces
+                    </div>
+                    <div ng-show="truss">
+                        truss
+                    </div>
+                    <div ng-show="weightConv">
+                        weightConv
                     </div>
                 </div>
             </div>
