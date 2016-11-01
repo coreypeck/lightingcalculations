@@ -3,6 +3,7 @@
 
 <head>
     <title>Lighting Formulas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="public/vendors/bootstrap.min.css" />
     <link rel="stylesheet" href="public/styles/style.css" />
     <script type="text/javascript" src="public/vendors/angular.min.js"></script>
@@ -53,7 +54,41 @@
                         horizontalBreastline
                     </div>
                     <div ng-show="lengthConv">
-                        lengthConv
+                        <select ng-model="lengthConvChoice" ng-change="checkInput()">
+                        <option value="feetToMeterRight">Feet to Meter</option>
+                        <option value="inchToCentiRight">Inch to Centimeter</option>
+                        <option value="inchToMiliRight">Inch to Milimeter</option>
+                      </select>
+                        <div ng-if="feetToMeterRight">
+                            <input class="counselorInput" type="text" ng-model="feetToMeterFT" placeholder="Feet"/>
+                            <i ng-click="makeLeft('feetToMeterRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <input class="counselorInput" type="text" ng-model="feetToMeterM" placeholder="Meters"/>
+                        </div>
+                        <div ng-if="feetToMeterLeft">
+                            <input class="counselorInput" type="text" ng-model="feetToMeterFT" placeholder="Feet"/>
+                            <i ng-click="makeRight('feetToMeterLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                            <input class="counselorInput" type="text" ng-model="feetToMeterM" placeholder="Meters"/>
+                        </div>
+                        <div ng-if="inchToCentiRight">
+                            <input class="counselorInput" type="text" ng-model="inchToCentiIN" placeholder="Inch"/>
+                            <i ng-click="makeLeft('inchToCentiRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <input class="counselorInput" type="text" ng-model="inchToCentiCM" placeholder="Centimeter"/>
+                        </div>
+                        <div ng-if="inchToCentiLeft">
+                            <input class="counselorInput" type="text" ng-model="inchToCentiIN" placeholder="Inch"/>
+                            <i ng-click="makeRight('inchToCentiLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                            <input class="counselorInput" type="text" ng-model="inchToCentiCM" placeholder="Centimeter"/>
+                        </div>
+                        <div ng-if="inchToMiliRight">
+                            <input class="counselorInput" type="text" ng-model="inchToMiliIN" placeholder="Inch"/>
+                            <i ng-click="makeLeft('inchToMiliRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                            <input class="counselorInput" type="text" ng-model="inchToMiliMM" placeholder="Milimeter"/>
+                        </div>
+                        <div ng-if="inchToMiliLeft">
+                            <input class="counselorInput" type="text" ng-model="inchToMiliIN" placeholder="Inch"/>
+                            <i ng-click="makeRight('inchToMiliLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                            <input class="counselorInput" type="text" ng-model="inchToMiliMM" placeholder="Milimeter"/>
+                        </div>
                     </div>
                     <div ng-show="lightLvlPoint">
                         lightLvlPoint
@@ -74,7 +109,10 @@
                         truss
                     </div>
                     <div ng-show="weightConv">
-                        weightConv
+                        <select>
+                        <option>Lbs -> kNs</option>
+                        <option>Lbs -> kgs</option>
+                      </select>
                     </div>
                 </div>
             </div>
