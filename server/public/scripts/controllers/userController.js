@@ -132,4 +132,7 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
         parameter += "Left";
         $scope[parameter] = true;
     }
+    $scope.doMath = function(parameter){
+      console.log(parameter);
+    }
 }]);

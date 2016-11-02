@@ -59,36 +59,42 @@
                         <option value="inchToCentiRight">Inch to Centimeter</option>
                         <option value="inchToMiliRight">Inch to Milimeter</option>
                       </select>
-                        <div ng-if="feetToMeterRight">
-                            <input class="counselorInput" type="text" ng-model="feetToMeterFT" placeholder="Feet"/>
-                            <i ng-click="makeLeft('feetToMeterRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                            <input class="counselorInput" type="text" ng-model="feetToMeterM" placeholder="Meters"/>
-                        </div>
-                        <div ng-if="feetToMeterLeft">
-                            <input class="counselorInput" type="text" ng-model="feetToMeterFT" placeholder="Feet"/>
-                            <i ng-click="makeRight('feetToMeterLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                            <input class="counselorInput" type="text" ng-model="feetToMeterM" placeholder="Meters"/>
-                        </div>
-                        <div ng-if="inchToCentiRight">
-                            <input class="counselorInput" type="text" ng-model="inchToCentiIN" placeholder="Inch"/>
-                            <i ng-click="makeLeft('inchToCentiRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                            <input class="counselorInput" type="text" ng-model="inchToCentiCM" placeholder="Centimeter"/>
-                        </div>
-                        <div ng-if="inchToCentiLeft">
-                            <input class="counselorInput" type="text" ng-model="inchToCentiIN" placeholder="Inch"/>
-                            <i ng-click="makeRight('inchToCentiLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                            <input class="counselorInput" type="text" ng-model="inchToCentiCM" placeholder="Centimeter"/>
-                        </div>
-                        <div ng-if="inchToMiliRight">
-                            <input class="counselorInput" type="text" ng-model="inchToMiliIN" placeholder="Inch"/>
-                            <i ng-click="makeLeft('inchToMiliRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                            <input class="counselorInput" type="text" ng-model="inchToMiliMM" placeholder="Milimeter"/>
-                        </div>
-                        <div ng-if="inchToMiliLeft">
-                            <input class="counselorInput" type="text" ng-model="inchToMiliIN" placeholder="Inch"/>
-                            <i ng-click="makeRight('inchToMiliLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                            <input class="counselorInput" type="text" ng-model="inchToMiliMM" placeholder="Milimeter"/>
-                        </div>
+                        <form>
+                            <div ng-if="feetToMeterRight">
+                                <input type="number" class="counselorInput" ng-model="feetToMeterFT" placeholder="Feet" />
+                                <i ng-click="makeLeft('feetToMeterRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <input class="counselorInput" type="text" value="{{((feetToMeterFT / 3.28).toFixed(2)) || 'Meters'}}" placeholder="this.value" readonly/>
+                            </div>
+                            <div ng-if="feetToMeterLeft">
+                                <input class="counselorInput" type="text" value="{{((feetToMeterM * 3.38).toFixed(2)) || 'Feet'}}" placeholder="this.value" readonly/>
+                                <i ng-click="makeRight('feetToMeterLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                                <input type="number" class="counselorInput" type="text" ng-model="feetToMeterM" placeholder="Meters" />
+                            </div>
+                        </form>
+                        <form>
+                            <div ng-if="inchToCentiRight">
+                                <input class="counselorInput" type="number" ng-model="inchToCentiIN" placeholder="Inch" />
+                                <i ng-click="makeLeft('inchToCentiRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <input type="text" class="counselorInput" value="{{((inchToCentiIN / 0.3937).toFixed(2)) || 'Centimeter'}}" placeholder="this.value" readonly/>
+                            </div>
+                            <div ng-if="inchToCentiLeft">
+                                <input class="counselorInput" type="text" value="{{((inchToCentiCM * 0.3937).toFixed(2)) || 'Inch'}}" placeholder="this.value" readonly/>
+                                <i ng-click="makeRight('inchToCentiLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                                <input class="counselorInput" type="number" ng-model="inchToCentiCM" placeholder="Centimeter" />
+                            </div>
+                        </form>
+                        <form>
+                            <div ng-if="inchToMiliRight">
+                                <input class="counselorInput" type="number" ng-model="inchToMiliIN" placeholder="Inch" />
+                                <i ng-click="makeLeft('inchToMiliRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <input class="counselorInput" type="text" value="{{((inchToMiliIN / 0.03937).toFixed(2)) || 'Milimeter'}}" placeholder="this.value" readonly/>
+                            </div>
+                            <div ng-if="inchToMiliLeft">
+                                <input class="counselorInput" type="text" value="{{((inchToMiliMM * 0.03937).toFixed(2)) || 'Inch'}}" placeholder="this.value" readonly/>
+                                <i ng-click="makeRight('inchToMiliLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                                <input type="number" class="counselorInput" ng-model="inchToMiliMM" placeholder="Milimeter" />
+                            </div>
+                        </form>
                     </div>
                     <div ng-show="lightLvlPoint">
                         lightLvlPoint
