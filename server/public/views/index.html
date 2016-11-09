@@ -54,45 +54,57 @@
                         horizontalBreastline
                     </div>
                     <div ng-show="lengthConv">
-                        <select ng-model="lengthConvChoice" ng-change="checkInput()">
+                        <select ng-model="lengthConvChoice" ng-change="checkInput('lengthConv', 'lengthConvChoice')">
                         <option value="feetToMeterRight">Feet to Meter</option>
                         <option value="inchToCentiRight">Inch to Centimeter</option>
                         <option value="inchToMiliRight">Inch to Milimeter</option>
-                      </select>
+                        </select>
                         <form>
                             <div ng-if="feetToMeterRight">
-                                <input type="number" class="counselorInput" ng-model="feetToMeterFT" placeholder="Feet" />
+                                <label>Feet</label>
+                                <input type="number" class="counselorInput" ng-model="feetToMeterFT" placeholder="0" />
                                 <i ng-click="makeLeft('feetToMeterRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                <input class="counselorInput" type="text" value="{{((feetToMeterFT / 3.28).toFixed(2)) || 'Meters'}}" placeholder="this.value" readonly/>
+                                <label>Meters</label>
+                                <input class="counselorInput" type="text" value="{{(((feetToMeterFT || 0) / 3.28).toFixed(2))}}" placeholder="this.value" readonly/>
                             </div>
                             <div ng-if="feetToMeterLeft">
-                                <input class="counselorInput" type="text" value="{{((feetToMeterM * 3.38).toFixed(2)) || 'Feet'}}" placeholder="this.value" readonly/>
+                                <label>Feet</label>
+                                <input class="counselorInput" type="text" value="{{(((feetToMeterM || 0) * 3.38).toFixed(2))}}" placeholder="this.value" readonly/>
                                 <i ng-click="makeRight('feetToMeterLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                                <input type="number" class="counselorInput" type="text" ng-model="feetToMeterM" placeholder="Meters" />
+                                <label>Meters</label>
+                                <input type="number" class="counselorInput" type="text" ng-model="feetToMeterM" placeholder="0" />
                             </div>
                         </form>
                         <form>
                             <div ng-if="inchToCentiRight">
-                                <input class="counselorInput" type="number" ng-model="inchToCentiIN" placeholder="Inch" />
+                                <label>Inch</label>
+                                <input class="counselorInput" type="number" ng-model="inchToCentiIN" placeholder="0" />
                                 <i ng-click="makeLeft('inchToCentiRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                <input type="text" class="counselorInput" value="{{((inchToCentiIN / 0.3937).toFixed(2)) || 'Centimeter'}}" placeholder="this.value" readonly/>
+                                <label>Centimeter</label>
+                                <input type="text" class="counselorInput" value="{{(((inchToCentiIN || 0) / 0.3937).toFixed(2))}}" placeholder="this.value" readonly/>
                             </div>
                             <div ng-if="inchToCentiLeft">
-                                <input class="counselorInput" type="text" value="{{((inchToCentiCM * 0.3937).toFixed(2)) || 'Inch'}}" placeholder="this.value" readonly/>
+                                <label>Inch</label>
+                                <input class="counselorInput" type="text" value="{{(((inchToCentiCM || 0) * 0.3937).toFixed(2))}}" placeholder="this.value" readonly/>
                                 <i ng-click="makeRight('inchToCentiLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                                <input class="counselorInput" type="number" ng-model="inchToCentiCM" placeholder="Centimeter" />
+                                <label>Centimeter</label>
+                                <input class="counselorInput" type="number" ng-model="inchToCentiCM" placeholder="0" />
                             </div>
                         </form>
                         <form>
                             <div ng-if="inchToMiliRight">
-                                <input class="counselorInput" type="number" ng-model="inchToMiliIN" placeholder="Inch" />
+                                <label>Inch</label>
+                                <input class="counselorInput" type="number" ng-model="inchToMiliIN" placeholder="0" />
                                 <i ng-click="makeLeft('inchToMiliRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                <input class="counselorInput" type="text" value="{{((inchToMiliIN / 0.03937).toFixed(2)) || 'Milimeter'}}" placeholder="this.value" readonly/>
+                                <label>Milimeter</label>
+                                <input class="counselorInput" type="text" value="{{(((inchToMiliIN || 0) / 0.03937).toFixed(2))}}" placeholder="this.value" readonly/>
                             </div>
                             <div ng-if="inchToMiliLeft">
-                                <input class="counselorInput" type="text" value="{{((inchToMiliMM * 0.03937).toFixed(2)) || 'Inch'}}" placeholder="this.value" readonly/>
+                                <label>Inch</label>
+                                <input class="counselorInput" type="text" value="{{(((inchToMiliMM || 0) * 0.03937).toFixed(2))}}" placeholder="this.value" readonly/>
                                 <i ng-click="makeRight('inchToMiliLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                                <input type="number" class="counselorInput" ng-model="inchToMiliMM" placeholder="Milimeter" />
+                                <label>Milimeter</label>
+                                <input type="number" class="counselorInput" ng-model="inchToMiliMM" placeholder="0" />
                             </div>
                         </form>
                     </div>
@@ -109,16 +121,82 @@
                         power
                     </div>
                     <div ng-show="resultantForces">
-                        resultantForces
+                      <select ng-model="resultantForcesChoice" ng-change="checkInput('resultantForces', 'resultantForcesChoice')">
+                      <option value="rFTimesLoad">Load * SOA</option>
+                      <option value="rFStat">Stationary Pulley</option>
+                      <option value="rFMove">Moving Pulley</option>
+                      </select>
+                      <form>
+                          <div ng-if="rFTimesLoad">
+                              <label>Load</label>
+                              <input type="number" class="counselorInput" ng-model="rFLoadSin" placeholder="0" />
+                              <label>Angle</label>
+                              <input type="number" class="counselorInput" ng-model="rFAngleSin" placeholder="0" />
+                              <label>Resultant Force</label>
+                              <input class="counselorInput" type="text" value="{{(rFLoadSin * (Math.sin(rFAngleSin * Math.PI / 180.0))/(Math.sin(rFAngleSin * Math.PI / 180.0)/2)).toFixed(2)}}" placeholder="this.value" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="rFStat">
+                              <label>Load</label>
+                              <input type="number" class="counselorInput" ng-model="rFLoadPlus" placeholder="0" />
+                              <label>Force</label>
+                              <input class="counselorInput" type="number" ng-model="rFForcePlus" placeholder="0" />
+                              <label>Resultant Force</label>
+                              <input type="text" class="counselorInput" value="{{(rFLoadPlus + rFForcePlus).toFixed(2)}}" placeholder="this.value" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="rFMove">
+                              <label>Load</label>
+                              <input type="number" class="counselorInput" ng-model="rFLoadSub" placeholder="0" />
+                              <label>Force</label>
+                              <input class="counselorInput" type="number" ng-model="rFForceSub" placeholder="0" />
+                              <label>Resultant Force</label>
+                              <input class="counselorInput" type="text" value="{{(rFLoadSub - rFForceSub).toFixed(2)}}" placeholder="this.value" readonly/>
+                          </div>
+                      </form>
                     </div>
                     <div ng-show="truss">
                         truss
                     </div>
                     <div ng-show="weightConv">
-                        <select>
-                        <option>Lbs -> kNs</option>
-                        <option>Lbs -> kgs</option>
+                      <select ng-model="weightConvChoice" ng-change="checkInput('weightConv', 'weightConvChoice')">
+                      <option value="lbToKNRight">Lbs to KiloNewtons</option>
+                      <option value="lbToKGRight">Lbs to Kilograms</option>
                       </select>
+                      <form>
+                          <div ng-if="lbToKNRight">
+                              <label>Pounds</label>
+                              <input type="number" class="counselorInput" ng-model="lbToKNLB" placeholder="0" />
+                              <i ng-click="makeLeft('lbToKNRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                              <label>KiloNewtons</label>
+                              <input class="counselorInput" type="text" value="{{(((lbToKNLB || 0) / 224.8).toFixed(2))}}" placeholder="this.value" readonly/>
+                          </div>
+                          <div ng-if="lbToKNLeft">
+                              <label>Pounds</label>
+                              <input class="counselorInput" type="text" value="{{(((lbToKNKN || 0) * 224.8).toFixed(2))}}" placeholder="this.value" readonly/>
+                              <i ng-click="makeRight('lbToKNLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                              <label>KiloNewtons</label>
+                              <input type="number" class="counselorInput" type="text" ng-model="lbToKNKN" placeholder="0" />
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="lbToKGRight">
+                              <label>Pounds</label>
+                              <input class="counselorInput" type="number" ng-model="lbToKGLB" placeholder="0" />
+                              <i ng-click="makeLeft('lbToKGRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                              <label>Kilograms</label>
+                              <input type="text" class="counselorInput" value="{{(((lbToKGLB || 0) / 2.2).toFixed(2))}}" placeholder="this.value" readonly/>
+                          </div>
+                          <div ng-if="lbToKGLeft">
+                              <label>Pounds</label>
+                              <input class="counselorInput" type="text" value="{{(((lbToKGKG || 0) * 2.2).toFixed(2))}}" placeholder="this.value" readonly/>
+                              <i ng-click="makeRight('lbToKGLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                              <label>Kilograms</label>
+                              <input class="counselorInput" type="number" ng-model="lbToKGKG" placeholder="0" />
+                          </div>
+                      </form>
                     </div>
                 </div>
             </div>

@@ -113,12 +113,16 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
         $scope.inchToCentiLeft = false;
         $scope.inchToMiliRight = false;
         $scope.inchToMiliLeft = false;
+        $scope.lbToKNRight = false;
+        $scope.lbToKGRight = false;
+        $scope.lbToKNLeft = false;
+        $scope.lbToKGLeft = false;
     }
-    $scope.checkInput = function() {
+    $scope.checkInput = function(selectArea, choosenConv) {
         makeFalse();
-        $scope.lengthConv = true;
-        var potato = $scope.lengthConvChoice
-        $scope[potato] = true;
+        $scope[selectArea] = true;
+        var choice = $scope[choosenConv];
+        $scope[choice] = true;
     }
     $scope.makeRight = function(selected) {
         $scope[selected] = false;
