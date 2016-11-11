@@ -39,7 +39,50 @@
                         beam
                     </div>
                     <div ng-show="cable">
-                        cable
+                      <select ng-model="cableChoice" ng-change="checkInput('cable', 'cableChoice')">
+                      <option value="maxOffDis">Max Offset Distance</option>
+                      <option value="fleetAng">Fleet Angle</option>
+                      <option value="sheaveDia">Sheave Diameter</option>
+                      <option value="doubleDRatio">D:d Ratio</option>
+                      </select>
+                      <form>
+                          <div ng-if="maxOffDis">
+                              <label>Distance</label>
+                              <input type="number" class="counselorInput" ng-model="maxOffDisInput" ng-change="doMath(maxOffDisInput, 'times', .026)"placeholder="0" />
+                              <label>Maximun Allowable Offset</label>
+                              <input class="counselorInput" ng-model="mathAnswer" value="{{mathAnswer}}" placeholder="0" />
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="fleetAng">
+                              <label>Load</label>
+                              <input type="number" class="counselorInput" ng-model="rFLoadPlus" placeholder="0" />
+                              <label>Force</label>
+                              <input class="counselorInput" type="number" ng-model="rFForcePlus" placeholder="0" />
+                              <label>Resultant Force</label>
+                              <input type="text" class="counselorInput" value="{{(rFLoadPlus + rFForcePlus).toFixed(2)}}" placeholder="this.value" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="sheaveDia">
+                              <label>Load</label>
+                              <input type="number" class="counselorInput" ng-model="rFLoadSub" placeholder="0" />
+                              <label>Force</label>
+                              <input class="counselorInput" type="number" ng-model="rFForceSub" placeholder="0" />
+                              <label>Resultant Force</label>
+                              <input class="counselorInput" type="text" value="{{(rFLoadSub - rFForceSub).toFixed(2)}}" placeholder="this.value" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="doubleDRatio">
+                              <label>Load</label>
+                              <input type="number" class="counselorInput" ng-model="rFLoadSub" placeholder="0" />
+                              <label>Force</label>
+                              <input class="counselorInput" type="number" ng-model="rFForceSub" placeholder="0" />
+                              <label>Resultant Force</label>
+                              <input class="counselorInput" type="text" value="{{(rFLoadSub - rFForceSub).toFixed(2)}}" placeholder="this.value" readonly/>
+                          </div>
+                      </form>
                     </div>
                     <div ng-show="candlepower">
                         candlepower
@@ -129,11 +172,11 @@
                       <form>
                           <div ng-if="rFTimesLoad">
                               <label>Load</label>
-                              <input type="number" class="counselorInput" ng-model="rFLoadSin" placeholder="0" />
+                              <input type="number" class="counselorInput" ng-model="rFLoadSin" ng-change="findTheSin(rFLoadSin,rFAngleSin)" placeholder="0" />
                               <label>Angle</label>
-                              <input type="number" class="counselorInput" ng-model="rFAngleSin" placeholder="0" />
+                              <input type="number" class="counselorInput" ng-model="rFAngleSin" ng-change="findTheSin(rFLoadSin,rFAngleSin)" placeholder="0" />
                               <label>Resultant Force</label>
-                              <input class="counselorInput" type="text" value="{{(rFLoadSin * (Math.sin(rFAngleSin * Math.PI / 180.0))/(Math.sin(rFAngleSin * Math.PI / 180.0)/2)).toFixed(2)}}" placeholder="this.value" readonly/>
+                              <input class="counselorInput" type="text" value="{{rFTimesLoadAns}}" placeholder="this.value" readonly/>
                           </div>
                       </form>
                       <form>

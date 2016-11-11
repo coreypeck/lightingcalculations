@@ -24,7 +24,7 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
         "Truss",
         "Weight Conv"
     ];
-
+    $scope.mathAnswer = 0;
     $scope.makeTrue = function(category) {
         makeFalse();
         console.log(category);
@@ -82,7 +82,7 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
                 break;
         }
     }
-
+    var accuracy = 2;
     function makeFalse() {
         $scope.twoPointBridles = false;
         $scope.threePointBridles = false;
@@ -117,6 +117,8 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
         $scope.lbToKGRight = false;
         $scope.lbToKNLeft = false;
         $scope.lbToKGLeft = false;
+
+        $scope.mathAnswer = 0;
     }
     $scope.checkInput = function(selectArea, choosenConv) {
         makeFalse();
@@ -136,7 +138,45 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
         parameter += "Left";
         $scope[parameter] = true;
     }
-    $scope.doMath = function(parameter){
-      console.log(parameter);
+    $scope.doMath = function(number1, mathType, number2){
+      switch(mathType){
+        case 'times':
+        $scope.mathAnswer = (number1 * number2).toFixed(accuracy);
+        if(isNaN($scope.mathAnswer)){
+          return 0;
+        }
+        break;
+        case 'subtract':
+        $scope.mathAnswer = (number1 - number2).toFixed(accuracy);
+        if(isNaN($scope.mathAnswer)){
+          return 0;
+        }
+        break;
+        case 'add':
+        $scope.mathAnswer = (number1 + number2).toFixed(accuracy);
+        if(isNaN($scope.mathAnswer)){
+          return 0;
+        }
+        break;
+        case 'minus':
+        $scope.mathAnswer = (number1 / number2).toFixed(accuracy);
+        if(isNaN($scope.mathAnswer)){
+          return 0;
+        }
+      }
+    }
+    $scope.findTheSin = function(rFLoadSin, rFAngleSin){
+      console.log(rFLoadSin);
+      var fullAngle = (Math.sin(rFAngleSin * Math.PI / 180.0)).toFixed(accuracy);
+      console.log(fullAngle);
+      var halfAngle = (Math.sin((rFAngleSin * Math.PI / 180.0)/2)).toFixed(accuracy);
+      console.log(halfAngle);
+      var response = (rFLoadSin * (fullAngle/halfAngle)).toFixed(accuracy);
+      if(isNaN(response)){
+        $scope.rFTimesLoadAns = 0;
+      }
+      else{
+        $scope.rFTimesLoadAns = response;
+      }
     }
 }]);
