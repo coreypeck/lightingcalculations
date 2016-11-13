@@ -128,18 +128,32 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
     }
 
     $scope.makeRight = function(selected) {
+      if($scope[selected] != false && $scope[selected] != true){
+        console.log("if running!");
         $scope.scopeArray.push(selected);
+      }
         $scope[selected] = false;
         var parameter = selected.substring(0, selected.length - 4);
         parameter += "Right";
+        if($scope[parameter] != false && $scope[parameter] != true){
+          console.log("if running!");
+          $scope.scopeArray.push(parameter);
+        }
         $scope[parameter] = true;
     }
 
     $scope.makeLeft = function(selected) {
+      if($scope[selected] != false && $scope[selected] != true){
+        console.log("if running!");
         $scope.scopeArray.push(selected);
+      }
         $scope[selected] = false;
         var parameter = selected.substring(0, selected.length - 5);
         parameter += "Left";
+        if($scope[parameter] != false && $scope[parameter] != true){
+          console.log("if running!");
+          $scope.scopeArray.push(parameter);
+        }
         $scope[parameter] = true;
     }
 
