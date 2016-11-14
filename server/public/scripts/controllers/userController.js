@@ -162,25 +162,25 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
         case 'times':
         $scope.mathAnswer = (number1 * number2).toFixed(accuracy);
         if(isNaN($scope.mathAnswer)){
-          return 0;
+          $scope.mathAnswer = 0;
         }
         break;
         case 'subtract':
         $scope.mathAnswer = (number1 - number2).toFixed(accuracy);
         if(isNaN($scope.mathAnswer)){
-          return 0;
+          $scope.mathAnswer = 0;
         }
         break;
         case 'add':
         $scope.mathAnswer = (number1 + number2).toFixed(accuracy);
         if(isNaN($scope.mathAnswer)){
-          return 0;
+          $scope.mathAnswer = 0;
         }
         break;
-        case 'minus':
+        case 'div':
         $scope.mathAnswer = (number1 / number2).toFixed(accuracy);
         if(isNaN($scope.mathAnswer)){
-          return 0;
+          $scope.mathAnswer = 0;
         }
       }
     }
@@ -199,4 +199,20 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
         $scope.rFTimesLoadAns = response;
       }
     }
+
+    $scope.findTheAtan = function(number){
+      console.log(number);
+      var atanNumber = Math.atan(number).toFixed(2);
+      if(isNaN(atanNumber)){
+        $scope.mathAnswer = 0;
+      }
+      else{
+        $scope.mathAnswer = atanNumber;
+      }
+    }
 }]);
+
+
+//Make a catch for equations that result in infinity
+//Fix Spacing
+//Add Styling
