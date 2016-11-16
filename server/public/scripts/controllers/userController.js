@@ -33,7 +33,6 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
 
     $scope.makeTrue = function(category) {
         makeFalse();
-        console.log(category);
         switch (category) {
             case "2-Point Bridles":
                 $scope.twoPointBridles = true;
@@ -107,7 +106,6 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
     }
 
     function makeFalse() {
-      console.log($scope.scopeArray);
       $scope.scopeArray.forEach(function(item){
         $scope[item] = false;
       });
@@ -118,9 +116,7 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
     $scope.checkInput = function(selectArea, chosenConv) {
         makeFalse();
         var choice = $scope[chosenConv];
-        console.log($scope[choice]);
         if($scope[choice] != false){
-          console.log("if running!");
           $scope.scopeArray.push(choice);
         }
         $scope[selectArea] = true;
@@ -129,14 +125,12 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
 
     $scope.makeRight = function(selected) {
       if($scope[selected] != false && $scope[selected] != true){
-        console.log("if running!");
         $scope.scopeArray.push(selected);
       }
         $scope[selected] = false;
         var parameter = selected.substring(0, selected.length - 4);
         parameter += "Right";
         if($scope[parameter] != false && $scope[parameter] != true){
-          console.log("if running!");
           $scope.scopeArray.push(parameter);
         }
         $scope[parameter] = true;
@@ -144,20 +138,21 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
 
     $scope.makeLeft = function(selected) {
       if($scope[selected] != false && $scope[selected] != true){
-        console.log("if running!");
         $scope.scopeArray.push(selected);
       }
         $scope[selected] = false;
         var parameter = selected.substring(0, selected.length - 5);
         parameter += "Left";
         if($scope[parameter] != false && $scope[parameter] != true){
-          console.log("if running!");
           $scope.scopeArray.push(parameter);
         }
         $scope[parameter] = true;
     }
 
     $scope.doMath = function(number1, mathType, number2){
+      number1 = parseFloat(number1);
+      number2 = parseFloat(number2);
+
       switch(mathType){
         case 'times':
         $scope.mathAnswer = (number1 * number2).toFixed(accuracy);
@@ -183,14 +178,12 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
           $scope.mathAnswer = 0;
         }
       }
+      return $scope.mathAnswer;
     }
 
     $scope.findTheSin = function(rFLoadSin, rFAngleSin){
-      console.log(rFLoadSin);
       var fullAngle = (Math.sin(rFAngleSin * Math.PI / 180.0)).toFixed(accuracy);
-      console.log(fullAngle);
       var halfAngle = (Math.sin((rFAngleSin * Math.PI / 180.0)/2)).toFixed(accuracy);
-      console.log(halfAngle);
       var response = (rFLoadSin * (fullAngle/halfAngle)).toFixed(accuracy);
       if(isNaN(response)){
         $scope.rFTimesLoadAns = 0;
@@ -201,14 +194,42 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
     }
 
     $scope.findTheAtan = function(number){
-      console.log(number);
-      var atanNumber = Math.atan(number).toFixed(2);
+      var atanNumber = Math.atan(number);
       if(isNaN(atanNumber)){
         $scope.mathAnswer = 0;
       }
       else{
         $scope.mathAnswer = atanNumber;
       }
+      return $scope.mathAnswer;
+    }
+
+    $scope.findTheSqrt = function(number, specialName){
+      var sqrtNumber = Math.sqrt(number).toFixed(2);
+      if(specialName != undefined && isNaN(sqrtNumber) == false){
+        $scope[specialName] = sqrtNumber;
+        return $scope[specialName];
+      }
+      else if(isNaN(sqrtNumber)){
+        $scope.mathAnswer = 0;
+        return $scope.mathAnswer;
+      }
+      else{
+        $scope.mathAnswer = sqrtNumber;
+        return $scope.mathAnswer;
+      }
+    }
+
+    $scope.toDegrees = function(angle){
+      console.log(angle);
+      $scope.mathAnswer = (angle * (180 / Math.PI)).toFixed(2);
+      return $scope.mathAnswer;
+    }
+
+    $scope.setValue = function(number, specialName){
+      console.log(number);
+      console.log(specialName);
+      $scope[specialName] = number;
     }
 }]);
 

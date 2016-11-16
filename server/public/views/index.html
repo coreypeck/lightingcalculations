@@ -27,7 +27,70 @@
                 <div class="col-md-9 centerpiece">
                     <button ng-click=showSidebar()>Sidebar</button>
                     <div ng-show="twoPointBridles">
-                        twoPointBridles
+                      <select ng-model="twoPointBridlesChoice" ng-change="checkInput('twoPointBridles', 'twoPointBridlesChoice')">
+                      <option value="legLength">Leg Length</option>
+                      <option value="bridleAngle">Bridle Angle</option>
+                      <option value="bridleTension">Tension on Bridles</option>
+                      </select>
+                      <form>
+                          <div ng-if="legLength">
+                              <label>Horizontal Distance: L1</label>
+                              <input type="number" class="counselorInput" ng-model="legLengthHHOne" ng-change="findTheSqrt(doMath((legLengthHHOne*legLengthHHOne), 'add', (legLengthHLOne*legLengthHLOne)), 'lOneAnswer')" placeholder="0" />
+                              <label>Vertical Distance: L1</label>
+                              <input class="counselorInput" type="number" ng-model="legLengthHLOne" ng-change="findTheSqrt(doMath((legLengthHHOne*legLengthHHOne), 'add', (legLengthHLOne*legLengthHLOne)), 'lOneAnswer')" placeholder="0" />
+                              <label>Bridle Length: L1</label>
+                              <input type="text" class="counselorInput" value="{{lOneAnswer}}" placeholder="0" readonly/>
+                              <label>Horizontal Distance: L2</label>
+                              <input type="number" class="counselorInput" ng-model="legLengthHHTwo" ng-change="findTheSqrt(doMath((legLengthHHTwo*legLengthHHTwo), 'add', (legLengthHLTwo*legLengthHLTwo)), 'lTwoAnswer')"  placeholder="0" />
+                              <label>Vertical Distance: L2</label>
+                              <input class="counselorInput" type="number" ng-model="legLengthHLTwo" ng-change="findTheSqrt(doMath((legLengthHHTwo*legLengthHHTwo), 'add', (legLengthHLTwo*legLengthHLTwo)), 'lTwoAnswer')" placeholder="0" />
+                              <label>Bridle Length: L2</label>
+                              <input type="text" class="counselorInput" value="{{lTwoAnswer}}" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="bridleAngle">
+                              <label>Horizontal Distance: L1</label>
+                              <input class="counselorInput" type="number" ng-model="bridleAngleHHOne" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0"/>
+                              <label>Vertical Distance: L1</label>
+                              <input class="counselorInput" type="number" ng-model="bridleAngleHLOne" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0"/>
+                              <label>Horizontal Distance: L2</label>
+                              <input class="counselorInput" type="number" ng-model="bridleAngleHHTwo" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0"/>
+                              <label>Vertical Distance: L2</label>
+                              <input class="counselorInput" type="number" ng-model="bridleAngleHLTwo" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0"/>
+                              <label>Angle</label>
+                              <input class="counselorInput" type="text" value="{{mathAnswer}}" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="bridleTension">
+                            <label>Load</label>
+                            <input class="counselorInput" type="number" ng-model="bridleTensionLoad" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')" placeholder="0"/>
+                            <div>
+                              <label>Leg Length: L1</label>
+                              <input class="counselorInput" type="number" ng-model="bridleTensionLenOne" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')" placeholder="0"/>
+                              <label>Horizontal Distance: L1</label>
+                              <input class="counselorInput" type="number" ng-model="bridleTensionHHOne" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')" placeholder="0"/>
+                            </div>
+                            <label>Vertical Distance: L1</label>
+                            <input class="counselorInput" type="number" ng-model="bridleTensionHLOne" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')" placeholder="0"/>
+                            <div>
+                              <label>Tension: L1</label>
+                              <input class="counselorInput" type="text" value="{{bridleTensionOne}}" placeholder="0" readonly/>
+                            </div>
+
+                            <label>Leg Length: L2</label>
+                            <input class="counselorInput" type="number" ng-model="bridleTensionLenTwo" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')" placeholder="0"/>
+                            <label>Horizontal Distance: L2</label>
+                            <input class="counselorInput" type="number" ng-model="bridleTensionHHTwo" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')" placeholder="0"/>
+                            <label>Vertical Distance: L2</label>
+                            <input class="counselorInput" type="number" ng-model="bridleTensionHLTwo" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')" placeholder="0"/>
+                            <div>
+                              <label>Tension: L2</label>
+                              <input class="counselorInput" type="text" value="{{bridleTensionTwo}}" placeholder="0" readonly/>
+                            </div>
+                          </div>
+                      </form>
                     </div>
                     <div ng-show="threePointBridles">
                         threePointBridles
@@ -56,9 +119,9 @@
                       <form>
                           <div ng-if="fleetAng">
                               <label>Offset Distance</label>
-                              <input type="number" class="counselorInput" ng-model="fleetAngOff" ng-change="findTheAtan((fleetAngOff/fleetAngMeas))"  placeholder="0" />
+                              <input type="number" class="counselorInput" ng-model="fleetAngOff" ng-change="toDegrees(findTheAtan((fleetAngOff/fleetAngMeas)))"  placeholder="0" />
                               <label>Measurement Distance</label>
-                              <input class="counselorInput" type="number" ng-model="fleetAngMeas" ng-change="findTheAtan((fleetAngOff/fleetAngMeas))" placeholder="0" />
+                              <input class="counselorInput" type="number" ng-model="fleetAngMeas" ng-change="toDegrees(findTheAtan((fleetAngOff/fleetAngMeas)))" placeholder="0" />
                               <label>Angle</label>
                               <input type="text" class="counselorInput" value="{{mathAnswer}}" placeholder="0" readonly/>
                           </div>
