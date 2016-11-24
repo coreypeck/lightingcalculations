@@ -99,7 +99,34 @@
                         avgLightArea
                     </div>
                     <div ng-show="beam">
-                        beam
+                      <select ng-model="beamChoice" ng-change="checkInput('beam', 'beamChoice')">
+                      <option value="beamCenter">Center of Gravity (2 Loads)</option>
+                      <option value="beamMultiple">Load on Multiple Lines</option>
+                      </select>
+                      <form>
+                        <div ng-if="beamCenter">
+                          <label>Load</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>L1</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>V1</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Tension on L1</label>
+                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                        </div>
+                      </form>
+                      <form>
+                        <div ng-if="beamMultiple">
+                          <label>Load</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>L1</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>V1</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Tension on L1</label>
+                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                        </div>
+                      </form>
                     </div>
                     <div ng-show="cable">
                       <select ng-model="cableChoice" ng-change="checkInput('cable', 'cableChoice')">
@@ -278,7 +305,60 @@
                       </form>
                     </div>
                     <div ng-show="truss">
-                        truss
+                      <select ng-model="trussChoice" ng-change="checkInput('truss', 'trussChoice')">
+                      <option value="trussDead">Dead Hang Load on Truss (One End)</option>
+                      <option value="trussSingle">Single Load on Truss</option>
+                      <option value="trussMultiple">Multiple Loads on Truss</option>
+                      <option value="trussCanti">Cantilevered Load on Truss</option>
+                      </select>
+                      <form>
+                        <div ng-if="trussDead">
+                          <label>Load</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>L1</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>V1</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Tension on L1</label>
+                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                        </div>
+                      </form>
+                      <form>
+                        <div ng-if="trussSingle">
+                          <label></label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Vertical Distance</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Horizontal Distance</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Horizontal Force</label>
+                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                        </div>
+                      </form>
+                      <form>
+                        <div ng-if="trussMultiple">
+                          <label></label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Vertical Distance</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Horizontal Distance</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Horizontal Force</label>
+                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                        </div>
+                      </form>
+                      <form>
+                        <div ng-if="trussCanti">
+                          <label></label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Vertical Distance</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Horizontal Distance</label>
+                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <label>Horizontal Force</label>
+                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                        </div>
+                      </form>
                     </div>
                     <div ng-show="weightConv">
                       <select ng-model="weightConvChoice" ng-change="checkInput('weightConv', 'weightConvChoice')">
