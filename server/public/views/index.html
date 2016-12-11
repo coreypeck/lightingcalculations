@@ -96,7 +96,41 @@
                         threePointBridles
                     </div>
                     <div ng-show="avgLightArea">
-                        avgLightArea
+                      <select ng-model="avgLightAreaChoice" ng-change="checkInput('avgLightArea', 'avgLightAreaChoice')">
+                      <option value="avgLightAreaFixtures">Avg Illumination (No. of Fixtures)</option>
+                      <option value="avgLightAreaTotal">Avg Illumination (Total Lamps)</option>
+                      <option value="avgLightAreaLamps">Avg Illumination (Lamps in One Fixture)</option>
+                      </select>
+                      <form>
+                          <div ng-if="avgLightAreaFixtures">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                              <label>Area in Square Feet</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                              <label>Footcandles</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="avgLightAreaTotal">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                              <label>Area in Square Feet</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                              <label>Footcandles</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="avgLightAreaLamps">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                              <label>Area in Square Feet</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                              <label>Footcandles</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
                     </div>
                     <div ng-show="beam">
                       <select ng-model="beamChoice" ng-change="checkInput('beam', 'beamChoice')">
@@ -177,14 +211,51 @@
                           </div>
                       </form>
                     </div>
-                    <div ng-show="candlepower">
-                        candlepower
-                    </div>
-                    <div ng-show="footcandles">
-                        footcandles
-                    </div>
                     <div ng-show="footcandlesAndLms">
-                        footcandlesAndLms
+                      <select ng-model="footcandlesAndLmsChoice" ng-change="checkInput('footcandlesAndLms', 'footcandlesAndLmsChoice')">
+                      <option value="footcandlesAndLmsFC">Footcandles</option>
+                      <option value="footcandlesAndLmsOneLx">1 Lux</option>
+                      <option value="footcandlesAndLmsLX">Lux</option>
+                      <option value="footcandlesAndLmsFCToCP">Footcandles to Candlepower</option>
+                      </select>
+                      <form>
+                          <div ng-if="footcandlesAndLmsFC">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                              <label>Area in Square Feet</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                              <label>Footcandles</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="footcandlesAndLmsOneLx">
+                              <label>Footcandles</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsOneLxFC" placeholder="0" />
+                              <label>Lux</label>
+                              <input type="text" class="counselorInput" ng-model="footcandlesAndLmsOneLxFC" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="footcandlesAndLmsLX">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="footcandlesAndLmsFCToCP">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
                     </div>
                     <div ng-show="horizontalBreastline">
                       <form>
@@ -256,7 +327,52 @@
                         </form>
                     </div>
                     <div ng-show="lightLvlPoint">
-                        lightLvlPoint
+                      <select ng-model="lightLvlPointChoice" ng-change="checkInput('lightLvlPoint', 'lightLvlPointChoice')">
+                        <option value="lightLvlPointFC">Footcandles</option>
+                        <option value="lightLvlPointHFC">Horizontal Footcandles</option>
+                        <option value="lightLvlPointVFC">Vertical Footcandles</option>
+                        <option value="lightLvlPointD">Distance Between Lamp and Point</option>
+                      </select>
+                      <form>
+                          <div ng-if="lightLvlPointFC">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="lightLvlPointHFC">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="lightLvlPointVFC">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="lightLvlPointD">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
                     </div>
                     <div ng-show="mechanicalAdv">
                         mechanicalAdv
@@ -280,7 +396,97 @@
                       </form>
                     </div>
                     <div ng-show="power">
-                        power
+                      <select ng-model="powerChoice" ng-change="checkInput('power', 'powerChoice')">
+                        <!--Goes back and forth-->
+                      <option value="powerAmpsToWatts">Amps to Watts</option>
+                      <option value="powerDemands">Power Demands</option>
+                      <option value="powerConsumption">Energy Consumption</option>
+                      <option value="powerHoursPerYear">Hours of Operation/Year</option>
+                      <option value="powerEfficacy">Lighting System Efficacy</option>
+                      <option value="powerPowerDensity">Unit Power Density</option>
+                      <option value="powerWattsPF">Watts Power Factor</option>
+                      <option value="powerVoltage">Voltage</option>
+                      </select>
+                      <form>
+                          <div ng-if="powerAmpsToWatts">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="powerDemands">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="powerConsumption">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="powerHoursPerYear">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="powerEfficacy">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="powerPowerDensity">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="powerWattsPF">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
+                      <form>
+                          <div ng-if="powerVoltage">
+                              <label>Total Lumens</label>
+                              <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Area in Square Meters</label>
+                              <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                              <label>Lux</label>
+                              <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                          </div>
+                      </form>
                     </div>
                     <div ng-show="resultantForces">
                       <select ng-model="resultantForcesChoice" ng-change="checkInput('resultantForces', 'resultantForcesChoice')">
