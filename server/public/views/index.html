@@ -31,7 +31,6 @@
             </script>
         </div>
         <div id="mySidenav" class="sidenav">
-            <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a>
             <ul class="center">
                 <li ng-repeat="category in categoryArray">
                     <span class="navBarText" ng-click="makeTrue(category)">{{category}}</span>
@@ -41,9 +40,10 @@
         <div id="container">
             <div class="row">
                 <div class="col-md-9 centerpiece">
-                    <button ng-click="openNav()"><i class="fa fa-bars fa-4x" aria-hidden="true"></i></button>
+                    <button ng-if="!navIsOpen" ng-click="openNav()"><i class="fa fa-bars fa-4x" aria-hidden="true"></i></button>
+                    <button ng-if="navIsOpen" ng-click="closeNav()"><i class="fa fa-bars fa-4x" aria-hidden="true"></i></button>
                     <div ng-show="twoPointBridles">
-                        <select ng-model="twoPointBridlesChoice" ng-change="checkInput('twoPointBridles', 'twoPointBridlesChoice')">
+                      <select ng-model="twoPointBridlesChoice" ng-change="checkInput('twoPointBridles', 'twoPointBridlesChoice')">
                       <option value="legLength">Leg Length</option>
                       <option value="bridleAngle">Bridle Angle</option>
                       <option value="bridleTension">Tension on Bridles</option>
@@ -51,66 +51,66 @@
                         <form>
                             <div ng-if="legLength">
                                 <label>Horizontal Distance: L1</label>
-                                <input type="number" class="counselorInput" ng-model="legLengthHHOne" ng-change="findTheSqrt(doMath((legLengthHHOne*legLengthHHOne), 'add', (legLengthHLOne*legLengthHLOne)), 'lOneAnswer')" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="legLengthHHOne" ng-change="findTheSqrt(doMath((legLengthHHOne*legLengthHHOne), 'add', (legLengthHLOne*legLengthHLOne)), 'lOneAnswer')" placeholder="0" />
                                 <label>Vertical Distance: L1</label>
-                                <input class="counselorInput" type="number" ng-model="legLengthHLOne" ng-change="findTheSqrt(doMath((legLengthHHOne*legLengthHHOne), 'add', (legLengthHLOne*legLengthHLOne)), 'lOneAnswer')" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="legLengthHLOne" ng-change="findTheSqrt(doMath((legLengthHHOne*legLengthHHOne), 'add', (legLengthHLOne*legLengthHLOne)), 'lOneAnswer')" placeholder="0" />
                                 <label>Bridle Length: L1</label>
-                                <input type="text" class="counselorInput" value="{{lOneAnswer}}" placeholder="0" readonly/>
+                                <input type="text" class="functionInfo" value="{{lOneAnswer}}" placeholder="0" readonly/>
                                 <label>Horizontal Distance: L2</label>
-                                <input type="number" class="counselorInput" ng-model="legLengthHHTwo" ng-change="findTheSqrt(doMath((legLengthHHTwo*legLengthHHTwo), 'add', (legLengthHLTwo*legLengthHLTwo)), 'lTwoAnswer')" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="legLengthHHTwo" ng-change="findTheSqrt(doMath((legLengthHHTwo*legLengthHHTwo), 'add', (legLengthHLTwo*legLengthHLTwo)), 'lTwoAnswer')" placeholder="0" />
                                 <label>Vertical Distance: L2</label>
-                                <input class="counselorInput" type="number" ng-model="legLengthHLTwo" ng-change="findTheSqrt(doMath((legLengthHHTwo*legLengthHHTwo), 'add', (legLengthHLTwo*legLengthHLTwo)), 'lTwoAnswer')" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="legLengthHLTwo" ng-change="findTheSqrt(doMath((legLengthHHTwo*legLengthHHTwo), 'add', (legLengthHLTwo*legLengthHLTwo)), 'lTwoAnswer')" placeholder="0" />
                                 <label>Bridle Length: L2</label>
-                                <input type="text" class="counselorInput" value="{{lTwoAnswer}}" placeholder="0" readonly/>
+                                <input type="text" class="functionInfo" value="{{lTwoAnswer}}" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="bridleAngle">
                                 <label>Horizontal Distance: L1</label>
-                                <input class="counselorInput" type="number" ng-model="bridleAngleHHOne" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="bridleAngleHHOne" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0" />
                                 <label>Vertical Distance: L1</label>
-                                <input class="counselorInput" type="number" ng-model="bridleAngleHLOne" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="bridleAngleHLOne" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0" />
                                 <label>Horizontal Distance: L2</label>
-                                <input class="counselorInput" type="number" ng-model="bridleAngleHHTwo" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="bridleAngleHHTwo" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0" />
                                 <label>Vertical Distance: L2</label>
-                                <input class="counselorInput" type="number" ng-model="bridleAngleHLTwo" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="bridleAngleHLTwo" ng-change="doMath(toDegrees(findTheAtan((bridleAngleHHOne/bridleAngleHLOne))), 'add', toDegrees(findTheAtan((bridleAngleHHTwo/bridleAngleHLTwo))))" placeholder="0" />
                                 <label>Angle</label>
-                                <input class="counselorInput" type="text" value="{{mathAnswer}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{mathAnswer}}" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="bridleTension">
                                 <label>Load</label>
-                                <input class="counselorInput" type="number" ng-model="bridleTensionLoad" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="bridleTensionLoad" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
                                     placeholder="0" />
                                 <div>
                                     <label>Leg Length: L1</label>
-                                    <input class="counselorInput" type="number" ng-model="bridleTensionLenOne" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
+                                    <input class="functionInfo" type="number" ng-model="bridleTensionLenOne" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
                                         placeholder="0" />
                                     <label>Horizontal Distance: L1</label>
-                                    <input class="counselorInput" type="number" ng-model="bridleTensionHHOne" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
+                                    <input class="functionInfo" type="number" ng-model="bridleTensionHHOne" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
                                         placeholder="0" />
                                 </div>
                                 <label>Vertical Distance: L1</label>
-                                <input class="counselorInput" type="number" ng-model="bridleTensionHLOne" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="bridleTensionHLOne" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
                                     placeholder="0" />
                                 <div>
                                     <label>Tension: L1</label>
-                                    <input class="counselorInput" type="text" value="{{bridleTensionOne}}" placeholder="0" readonly/>
+                                    <input class="functionInfo" type="text" value="{{bridleTensionOne}}" placeholder="0" readonly/>
                                 </div>
 
                                 <label>Leg Length: L2</label>
-                                <input class="counselorInput" type="number" ng-model="bridleTensionLenTwo" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="bridleTensionLenTwo" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
                                     placeholder="0" />
                                 <label>Horizontal Distance: L2</label>
-                                <input class="counselorInput" type="number" ng-model="bridleTensionHHTwo" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="bridleTensionHHTwo" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
                                     placeholder="0" />
                                 <label>Vertical Distance: L2</label>
-                                <input class="counselorInput" type="number" ng-model="bridleTensionHLTwo" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="bridleTensionHLTwo" ng-change="setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenOne*bridleTensionHHTwo), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionOne'); setValue(doMath(bridleTensionLoad, 'times', doMath((bridleTensionLenTwo*bridleTensionHHOne), 'div', ((bridleTensionHLOne*bridleTensionHHTwo)+(bridleTensionHLTwo*bridleTensionHHOne)))), 'bridleTensionTwo')"
                                     placeholder="0" />
                                 <div>
                                     <label>Tension: L2</label>
-                                    <input class="counselorInput" type="text" value="{{bridleTensionTwo}}" placeholder="0" readonly/>
+                                    <input class="functionInfo" type="text" value="{{bridleTensionTwo}}" placeholder="0" readonly/>
                                 </div>
                             </div>
                         </form>
@@ -127,31 +127,31 @@
                         <form>
                             <div ng-if="avgLightAreaFixtures">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
                                 <label>Area in Square Feet</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
                                 <label>Footcandles</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="avgLightAreaTotal">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
                                 <label>Area in Square Feet</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
                                 <label>Footcandles</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="avgLightAreaLamps">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
                                 <label>Area in Square Feet</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
                                 <label>Footcandles</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                     </div>
@@ -163,28 +163,28 @@
                         <form>
                             <div ng-if="beamCenter">
                                 <label>Load 1</label>
-                                <input class="counselorInput" type="number" ng-model="beamCenterLoadOne" ng-change="setValue(doMath((beamCenterLoadTwo * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideOne'); setValue(doMath((beamCenterLoadOne * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideTwo')"
+                                <input class="functionInfo" type="number" ng-model="beamCenterLoadOne" ng-change="setValue(doMath((beamCenterLoadTwo * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideOne'); setValue(doMath((beamCenterLoadOne * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideTwo')"
                                     placeholder="0" />
                                 <label>Load 2</label>
-                                <input class="counselorInput" type="number" ng-model="beamCenterLoadTwo" ng-change="setValue(doMath((beamCenterLoadTwo * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideOne'); setValue(doMath((beamCenterLoadOne * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideTwo')"
+                                <input class="functionInfo" type="number" ng-model="beamCenterLoadTwo" ng-change="setValue(doMath((beamCenterLoadTwo * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideOne'); setValue(doMath((beamCenterLoadOne * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideTwo')"
                                     placeholder="0" />
                                 <label>Span</label>
-                                <input class="counselorInput" type="number" ng-model="beamCenterLoadSpan" ng-change="setValue(doMath((beamCenterLoadTwo * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideOne'); setValue(doMath((beamCenterLoadOne * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideTwo')"
+                                <input class="functionInfo" type="number" ng-model="beamCenterLoadSpan" ng-change="setValue(doMath((beamCenterLoadTwo * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideOne'); setValue(doMath((beamCenterLoadOne * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideTwo')"
                                     placeholder="0" />
                                 <label>Length of Side 1</label>
-                                <input class="counselorInput" type="text" ng-model="lengthSideOne" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="lengthSideOne" placeholder="0" readonly/>
                                 <label>Length of Side 2</label>
-                                <input class="counselorInput" type="text" ng-model="lengthSideTwo" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="lengthSideTwo" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="beamMultiple">
                                 <label>Total Weight of Load</label>
-                                <input class="counselorInput" type="number" ng-model="beamMultipleLoad" ng-change="doMath(beamMultipleLoad, 'div', (beamMultipleSupport - 1))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="beamMultipleLoad" ng-change="doMath(beamMultipleLoad, 'div', (beamMultipleSupport - 1))" placeholder="0" />
                                 <label>Number of Supporting Lines</label>
-                                <input class="counselorInput" type="number" ng-model="beamMultipleSupport" ng-change="doMath(beamMultipleLoad, 'div', (beamMultipleSupport - 1))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="beamMultipleSupport" ng-change="doMath(beamMultipleLoad, 'div', (beamMultipleSupport - 1))" placeholder="0" />
                                 <label>Load on Each Line</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                     </div>
@@ -198,42 +198,42 @@
                         <form>
                             <div ng-if="maxOffDis">
                                 <label>Distance</label>
-                                <input type="number" class="counselorInput" ng-model="maxOffDisInput" ng-change="doMath(maxOffDisInput, 'times', .026)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="maxOffDisInput" ng-change="doMath(maxOffDisInput, 'times', .026)" placeholder="0" />
                                 <label>Maximun Allowable Offset</label>
-                                <input class="counselorInput" ng-model="mathAnswer" value="{{mathAnswer}}" placeholder="0" />
+                                <input class="functionInfo" ng-model="mathAnswer" value="{{mathAnswer}}" placeholder="0" />
                             </div>
                         </form>
                         <form>
                             <div ng-if="fleetAng">
                                 <label>Offset Distance</label>
-                                <input type="number" class="counselorInput" ng-model="fleetAngOff" ng-change="toDegrees(findTheAtan((fleetAngOff/fleetAngMeas)))" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="fleetAngOff" ng-change="toDegrees(findTheAtan((fleetAngOff/fleetAngMeas)))" placeholder="0" />
                                 <label>Measurement Distance</label>
-                                <input class="counselorInput" type="number" ng-model="fleetAngMeas" ng-change="toDegrees(findTheAtan((fleetAngOff/fleetAngMeas)))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="fleetAngMeas" ng-change="toDegrees(findTheAtan((fleetAngOff/fleetAngMeas)))" placeholder="0" />
                                 <label>Angle</label>
-                                <input type="text" class="counselorInput" value="{{mathAnswer}}" placeholder="0" readonly/>
+                                <input type="text" class="functionInfo" value="{{mathAnswer}}" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="sheaveDia">
                                 <label>D:d Ratio</label>
-                                <input class="counselorInput" type="number" ng-model="sheaveDiaD" ng-change="doMath((sheaveDiaD/sheaveDiaDd), 'times', sheaveDiaCDia)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="sheaveDiaD" ng-change="doMath((sheaveDiaD/sheaveDiaDd), 'times', sheaveDiaCDia)" placeholder="0" />
                                 <label>:</label>
-                                <input class="counselorInput" type="number" ng-model="sheaveDiaDd" ng-change="doMath((sheaveDiaD/sheaveDiaDd), 'times', sheaveDiaCDia)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="sheaveDiaDd" ng-change="doMath((sheaveDiaD/sheaveDiaDd), 'times', sheaveDiaCDia)" placeholder="0" />
                                 <label>Cable Diameter</label>
-                                <input class="counselorInput" type="number" ng-model="sheaveDiaCDia" ng-change="doMath((sheaveDiaD/sheaveDiaDd), 'times', sheaveDiaCDia)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="sheaveDiaCDia" ng-change="doMath((sheaveDiaD/sheaveDiaDd), 'times', sheaveDiaCDia)" placeholder="0" />
                                 <label>Sheave Diameter</label>
-                                <input class="counselorInput" type="text" value="{{mathAnswer}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{mathAnswer}}" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="doubleDRatio">
                                 <label>Sheave Diameter</label>
-                                <input type="number" class="counselorInput" ng-model="doubleDRatioSheav" ng-change="doMath(doubleDRatioSheav, 'div', doubleDRatioRope)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="doubleDRatioSheav" ng-change="doMath(doubleDRatioSheav, 'div', doubleDRatioRope)" placeholder="0" />
                                 <label>Rope Diameter</label>
-                                <input class="counselorInput" type="number" ng-model="doubleDRatioRope" ng-change="doMath(doubleDRatioSheav, 'div', doubleDRatioRope)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="doubleDRatioRope" ng-change="doMath(doubleDRatioSheav, 'div', doubleDRatioRope)" placeholder="0" />
                                 <label>:1</label>
                                 <label>D:d Ratio</label>
-                                <input class="counselorInput" type="text" value="{{mathAnswer}} : 1" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{mathAnswer}} : 1" placeholder="0" readonly/>
                             </div>
                         </form>
                     </div>
@@ -247,39 +247,39 @@
                         <form>
                             <div ng-if="footcandlesAndLmsFC">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsFCLumens" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
                                 <label>Area in Square Feet</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsFCSq" ng-change="doMath(footcandlesAndLmsFCLumens, 'div', footcandlesAndLmsFCSq)" placeholder="0" />
                                 <label>Footcandles</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="footcandlesAndLmsOneLx">
                                 <label>Footcandles</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsOneLxFC" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsOneLxFC" placeholder="0" />
                                 <label>Lux</label>
-                                <input type="text" class="counselorInput" ng-model="footcandlesAndLmsOneLxFC" placeholder="0" readonly/>
+                                <input type="text" class="functionInfo" ng-model="footcandlesAndLmsOneLxFC" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="footcandlesAndLmsLX">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="footcandlesAndLmsFCToCP">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                     </div>
@@ -287,13 +287,13 @@
                         <form>
                             <div ng-if="horizontalBreastline">
                                 <label>Load</label>
-                                <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0" />
                                 <label>Vertical Distance</label>
-                                <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0" />
                                 <label>Horizontal Distance</label>
-                                <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0" />
                                 <label>Horizontal Force</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" />
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" />
                             </div>
                         </form>
                     </div>
@@ -306,49 +306,49 @@
                         <form>
                             <div ng-if="feetToMeterRight">
                                 <label>Feet</label>
-                                <input type="number" class="counselorInput" ng-model="feetToMeterFT" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="feetToMeterFT" placeholder="0" />
                                 <i ng-click="makeLeft('feetToMeterRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 <label>Meters</label>
-                                <input class="counselorInput" type="text" value="{{(((feetToMeterFT || 0) / 3.28).toFixed(2))}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{(((feetToMeterFT || 0) / 3.28).toFixed(2))}}" placeholder="0" readonly/>
                             </div>
                             <div ng-if="feetToMeterLeft">
                                 <label>Feet</label>
-                                <input class="counselorInput" type="text" value="{{(((feetToMeterM || 0) * 3.38).toFixed(2))}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{(((feetToMeterM || 0) * 3.38).toFixed(2))}}" placeholder="0" readonly/>
                                 <i ng-click="makeRight('feetToMeterLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
                                 <label>Meters</label>
-                                <input type="number" class="counselorInput" type="text" ng-model="feetToMeterM" placeholder="0" />
+                                <input type="number" class="functionInfo" type="text" ng-model="feetToMeterM" placeholder="0" />
                             </div>
                         </form>
                         <form>
                             <div ng-if="inchToCentiRight">
                                 <label>Inch</label>
-                                <input class="counselorInput" type="number" ng-model="inchToCentiIN" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="inchToCentiIN" placeholder="0" />
                                 <i ng-click="makeLeft('inchToCentiRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 <label>Centimeter</label>
-                                <input type="text" class="counselorInput" value="{{(((inchToCentiIN || 0) / 0.3937).toFixed(2))}}" placeholder="0" readonly/>
+                                <input type="text" class="functionInfo" value="{{(((inchToCentiIN || 0) / 0.3937).toFixed(2))}}" placeholder="0" readonly/>
                             </div>
                             <div ng-if="inchToCentiLeft">
                                 <label>Inch</label>
-                                <input class="counselorInput" type="text" value="{{(((inchToCentiCM || 0) * 0.3937).toFixed(2))}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{(((inchToCentiCM || 0) * 0.3937).toFixed(2))}}" placeholder="0" readonly/>
                                 <i ng-click="makeRight('inchToCentiLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
                                 <label>Centimeter</label>
-                                <input class="counselorInput" type="number" ng-model="inchToCentiCM" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="inchToCentiCM" placeholder="0" />
                             </div>
                         </form>
                         <form>
                             <div ng-if="inchToMiliRight">
                                 <label>Inch</label>
-                                <input class="counselorInput" type="number" ng-model="inchToMiliIN" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="inchToMiliIN" placeholder="0" />
                                 <i ng-click="makeLeft('inchToMiliRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 <label>Milimeter</label>
-                                <input class="counselorInput" type="text" value="{{(((inchToMiliIN || 0) / 0.03937).toFixed(2))}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{(((inchToMiliIN || 0) / 0.03937).toFixed(2))}}" placeholder="0" readonly/>
                             </div>
                             <div ng-if="inchToMiliLeft">
                                 <label>Inch</label>
-                                <input class="counselorInput" type="text" value="{{(((inchToMiliMM || 0) * 0.03937).toFixed(2))}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{(((inchToMiliMM || 0) * 0.03937).toFixed(2))}}" placeholder="0" readonly/>
                                 <i ng-click="makeRight('inchToMiliLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
                                 <label>Milimeter</label>
-                                <input type="number" class="counselorInput" ng-model="inchToMiliMM" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="inchToMiliMM" placeholder="0" />
                             </div>
                         </form>
                     </div>
@@ -362,63 +362,60 @@
                         <form>
                             <div ng-if="lightLvlPointFC">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="lightLvlPointHFC">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="lightLvlPointVFC">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="lightLvlPointD">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
-                    </div>
-                    <div ng-show="mechanicalAdv">
-                        mechanicalAdv
                     </div>
                     <div ng-show="pointLoad">
                         <form>
                             <div>
                                 <label>Load</label>
-                                <input class="counselorInput" type="number" ng-model="pointLoadLoad" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne'); setValue(doMath(pointLoadLoad, 'subtract', pointLoadLOne), 'pointLoadTensionLTwo')"
+                                <input class="functionInfo" type="number" ng-model="pointLoadLoad" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne'); setValue(doMath(pointLoadLoad, 'subtract', pointLoadLOne), 'pointLoadTensionLTwo')"
                                     placeholder="0" />
                                 <label>Distance 1</label>
-                                <input class="counselorInput" type="number" ng-model="pointLoadDisOne" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne')" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="pointLoadDisOne" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne')" placeholder="0" />
                                 <label>L1</label>
-                                <input class="counselorInput" type="number" ng-model="pointLoadLOne" ng-change="setValue(doMath(pointLoadLoad, 'subtract', pointLoadLOne), 'pointLoadTensionLTwo')" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="pointLoadLOne" ng-change="setValue(doMath(pointLoadLoad, 'subtract', pointLoadLOne), 'pointLoadTensionLTwo')" placeholder="0" />
                                 <label>Span</label>
-                                <input class="counselorInput" type="number" ng-model="pointLoadSpan" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne')" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="pointLoadSpan" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne')" placeholder="0" />
                                 <label>Tension on L1</label>
-                                <input class="counselorInput" type="text" ng-model="pointLoadTensionLOne" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="pointLoadTensionLOne" placeholder="0" readonly/>
                                 <label>Tension on L2</label>
-                                <input class="counselorInput" type="text" ng-model="pointLoadTensionLTwo" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="pointLoadTensionLTwo" placeholder="0" readonly/>
                             </div>
                         </form>
                     </div>
@@ -437,81 +434,81 @@
                         <form>
                             <div ng-if="powerAmpsToWatts">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="powerDemands">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="powerConsumption">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="powerHoursPerYear">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="powerEfficacy">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="powerPowerDensity">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="powerWattsPF">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="powerVoltage">
                                 <label>Total Lumens</label>
-                                <input type="number" class="counselorInput" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="footcandlesAndLmsLXLms" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Area in Square Meters</label>
-                                <input class="counselorInput" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="footcandlesAndLmsLXSq" ng-change="doMath(footcandlesAndLmsLXLms, 'div', footcandlesAndLmsLXSq)" placeholder="0" />
                                 <label>Lux</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                     </div>
@@ -524,31 +521,31 @@
                         <form>
                             <div ng-if="rFTimesLoad">
                                 <label>Load</label>
-                                <input type="number" class="counselorInput" ng-model="rFLoadSin" ng-change="findTheSin(rFLoadSin,rFAngleSin)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="rFLoadSin" ng-change="findTheSin(rFLoadSin,rFAngleSin)" placeholder="0" />
                                 <label>Angle</label>
-                                <input type="number" class="counselorInput" ng-model="rFAngleSin" ng-change="findTheSin(rFLoadSin,rFAngleSin)" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="rFAngleSin" ng-change="findTheSin(rFLoadSin,rFAngleSin)" placeholder="0" />
                                 <label>Resultant Force</label>
-                                <input class="counselorInput" type="text" value="{{rFTimesLoadAns}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{rFTimesLoadAns}}" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="rFStat">
                                 <label>Load</label>
-                                <input type="number" class="counselorInput" ng-model="rFLoadPlus" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="rFLoadPlus" placeholder="0" />
                                 <label>Force</label>
-                                <input class="counselorInput" type="number" ng-model="rFForcePlus" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="rFForcePlus" placeholder="0" />
                                 <label>Resultant Force</label>
-                                <input type="text" class="counselorInput" value="{{(rFLoadPlus + rFForcePlus).toFixed(2)}}" placeholder="0" readonly/>
+                                <input type="text" class="functionInfo" value="{{(rFLoadPlus + rFForcePlus).toFixed(2)}}" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="rFMove">
                                 <label>Load</label>
-                                <input type="number" class="counselorInput" ng-model="rFLoadSub" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="rFLoadSub" placeholder="0" />
                                 <label>Force</label>
-                                <input class="counselorInput" type="number" ng-model="rFForceSub" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="rFForceSub" placeholder="0" />
                                 <label>Resultant Force</label>
-                                <input class="counselorInput" type="text" value="{{(rFLoadSub - rFForceSub).toFixed(2)}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{(rFLoadSub - rFForceSub).toFixed(2)}}" placeholder="0" readonly/>
                             </div>
                         </form>
                     </div>
@@ -562,91 +559,91 @@
                         <form>
                             <div ng-if="trussDead">
                                 <label>Load</label>
-                                <input class="counselorInput" type="number" ng-model="trussDeadLoad" ng-change="doMath(trussDeadLoad, 'times', (trussDeadLOne/trussDeadVOne))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="trussDeadLoad" ng-change="doMath(trussDeadLoad, 'times', (trussDeadLOne/trussDeadVOne))" placeholder="0" />
                                 <label>L1</label>
-                                <input class="counselorInput" type="number" ng-model="trussDeadLOne" ng-change="doMath(trussDeadLoad, 'times', (trussDeadLOne/trussDeadVOne))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="trussDeadLOne" ng-change="doMath(trussDeadLoad, 'times', (trussDeadLOne/trussDeadVOne))" placeholder="0" />
                                 <label>V1</label>
-                                <input class="counselorInput" type="number" ng-model="trussDeadVOne" ng-change="doMath(trussDeadLoad, 'times', (trussDeadLOne/trussDeadVOne))" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="trussDeadVOne" ng-change="doMath(trussDeadLoad, 'times', (trussDeadLOne/trussDeadVOne))" placeholder="0" />
                                 <label>Tension on L1</label>
-                                <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="trussSingle">
                                 <label>Load 1</label>
-                                <input class="counselorInput" type="number" ng-model="trussSingleLoadOne" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussSingleLoadOne" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
                                     placeholder="0" />
                                 <label>Load 2</label>
-                                <input class="counselorInput" type="number" ng-model="trussSingleLoadTwo" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussSingleLoadTwo" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
                                     placeholder="0" />
                                 <label>Span</label>
-                                <input class="counselorInput" type="number" ng-model="trussSingleSpan" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussSingleSpan" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
                                     placeholder="0" />
                                 <label>Distance 1</label>
-                                <input class="counselorInput" type="number" ng-model="trussSingleDisOne" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussSingleDisOne" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
                                     placeholder="0" />
                                 <label>Distance 2</label>
-                                <input class="counselorInput" type="number" ng-model="trussSingleDisTwo" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussSingleDisTwo" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')"
                                     placeholder="0" />
                                 <label>Tension on L1</label>
-                                <input class="counselorInput" type="text" ng-model="tensionlOne" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="tensionlOne" placeholder="0" readonly/>
                                 <label>Tension on L2</label>
-                                <input class="counselorInput" type="text" ng-model="tensionlTwo" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="tensionlTwo" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="trussMultiple">
                                 <label>Load 1</label>
-                                <input class="counselorInput" type="number" ng-model="trussMultipleLoadOne" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussMultipleLoadOne" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
                                     placeholder="0" />
                                 <label>Load 2</label>
-                                <input class="counselorInput" type="number" ng-model="trussMultipleLoadTwo" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussMultipleLoadTwo" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
                                     placeholder="0" />
                                 <label>Distance 1</label>
-                                <input class="counselorInput" type="number" ng-model="trussMultipleDisOne" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussMultipleDisOne" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
                                     placeholder="0" />
                                 <label>Distance 2</label>
-                                <input class="counselorInput" type="number" ng-model="trussMultipleDisTwo" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussMultipleDisTwo" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
                                     placeholder="0" />
                                 <label>Span</label>
-                                <input class="counselorInput" type="number" ng-model="trussMultipleSpan" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussMultipleSpan" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')"
                                     placeholder="0" />
                                 <label>Tension on L1</label>
-                                <input class="counselorInput" type="text" ng-model="trussMultipleTensionOne" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="trussMultipleTensionOne" placeholder="0" readonly/>
                                 <label>Tension on L2</label>
-                                <input class="counselorInput" type="text" ng-model="trussMultipleTensionTwo" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="trussMultipleTensionTwo" placeholder="0" readonly/>
                             </div>
                         </form>
                         <form>
                             <div ng-if="trussCanti">
                                 <label>Load 1</label>
-                                <input class="counselorInput" type="number" ng-model="trussCantiLoadOne" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussCantiLoadOne" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
                                     placeholder="0" />
                                 <label>Load 2</label>
-                                <input class="counselorInput" type="number" ng-model="trussCantiLoadTwo" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussCantiLoadTwo" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
                                     placeholder="0" />
                                 <label>Load 3</label>
-                                <input class="counselorInput" type="number" ng-model="trussCantiLoadThird" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussCantiLoadThird" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
                                     placeholder="0" />
                                 <label>Distance 1</label>
-                                <input class="counselorInput" type="number" ng-model="trussCantiDisOne" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussCantiDisOne" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
                                     placeholder="0" />
                                 <label>Distance 2</label>
-                                <input class="counselorInput" type="number" ng-model="trussCantiDisTwo" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussCantiDisTwo" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
                                     placeholder="0" />
                                 <label>Distance 3</label>
-                                <input class="counselorInput" type="number" ng-model="trussCantiDisThree" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussCantiDisThree" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
                                     placeholder="0" />
                                 <label>Span</label>
-                                <input class="counselorInput" type="number" ng-model="trussCantiSpan" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussCantiSpan" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
                                     placeholder="0" />
                                 <label>L1</label>
-                                <input class="counselorInput" type="number" ng-model="trussCantiLOne" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
+                                <input class="functionInfo" type="number" ng-model="trussCantiLOne" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')"
                                     placeholder="0" />
                                 <label>Tension on L1</label>
-                                <input class="counselorInput" type="text" ng-model="trussCantiTensionLOne" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="trussCantiTensionLOne" placeholder="0" readonly/>
                                 <label>Tension on L2</label>
-                                <input class="counselorInput" type="text" ng-model="trussCantiTensionLTwo" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" ng-model="trussCantiTensionLTwo" placeholder="0" readonly/>
                             </div>
                         </form>
                     </div>
@@ -658,33 +655,33 @@
                         <form>
                             <div ng-if="lbToKNRight">
                                 <label>Pounds</label>
-                                <input type="number" class="counselorInput" ng-model="lbToKNLB" placeholder="0" />
+                                <input type="number" class="functionInfo" ng-model="lbToKNLB" placeholder="0" />
                                 <i ng-click="makeLeft('lbToKNRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 <label>KiloNewtons</label>
-                                <input class="counselorInput" type="text" value="{{(((lbToKNLB || 0) / 224.8).toFixed(2))}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{(((lbToKNLB || 0) / 224.8).toFixed(2))}}" placeholder="0" readonly/>
                             </div>
                             <div ng-if="lbToKNLeft">
                                 <label>Pounds</label>
-                                <input class="counselorInput" type="text" value="{{(((lbToKNKN || 0) * 224.8).toFixed(2))}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{(((lbToKNKN || 0) * 224.8).toFixed(2))}}" placeholder="0" readonly/>
                                 <i ng-click="makeRight('lbToKNLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
                                 <label>KiloNewtons</label>
-                                <input type="number" class="counselorInput" type="text" ng-model="lbToKNKN" placeholder="0" />
+                                <input type="number" class="functionInfo" type="text" ng-model="lbToKNKN" placeholder="0" />
                             </div>
                         </form>
                         <form>
                             <div ng-if="lbToKGRight">
                                 <label>Pounds</label>
-                                <input class="counselorInput" type="number" ng-model="lbToKGLB" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="lbToKGLB" placeholder="0" />
                                 <i ng-click="makeLeft('lbToKGRight')" class="fa fa-long-arrow-right" aria-hidden="true"></i>
                                 <label>Kilograms</label>
-                                <input type="text" class="counselorInput" value="{{(((lbToKGLB || 0) / 2.2).toFixed(2))}}" placeholder="0" readonly/>
+                                <input type="text" class="functionInfo" value="{{(((lbToKGLB || 0) / 2.2).toFixed(2))}}" placeholder="0" readonly/>
                             </div>
                             <div ng-if="lbToKGLeft">
                                 <label>Pounds</label>
-                                <input class="counselorInput" type="text" value="{{(((lbToKGKG || 0) * 2.2).toFixed(2))}}" placeholder="0" readonly/>
+                                <input class="functionInfo" type="text" value="{{(((lbToKGKG || 0) * 2.2).toFixed(2))}}" placeholder="0" readonly/>
                                 <i ng-click="makeRight('lbToKGLeft')" class="fa fa-long-arrow-left" aria-hidden="true"></i>
                                 <label>Kilograms</label>
-                                <input class="counselorInput" type="number" ng-model="lbToKGKG" placeholder="0" />
+                                <input class="functionInfo" type="number" ng-model="lbToKGKG" placeholder="0" />
                             </div>
                         </form>
                     </div>

@@ -3,6 +3,7 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
     var accuracy = 2;
     $scope.mathAnswer = 0;
 
+    $scope.navIsOpen = false;
 
     $scope.showSidebar = function() {
         if ($scope.sidebar) {
@@ -15,14 +16,13 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
     $scope.categoryArray = [
         "2-Point Bridles",
         "3-Point Bridles",
-        "Avg Light Lvl (area)",
+        "Light Lvl (area)",
         "Beam",
         "Cable",
-        "Footcandles & Lms",
-        "Horizontal Breastline",
+        "FC & Lms",
+        "H Breastline",
         "Length Conv",
         "Light Lvl (point)",
-        "Mechanical Adv",
         "Point Load",
         "Power",
         "Resultant Forces",
@@ -41,7 +41,7 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
                 $scope.threePointBridles = true;
                 $scope.scopeArray.push('threePointBridles');
                 break;
-            case "Avg Light Lvl (area)":
+            case "Light Lvl (area)":
                 $scope.avgLightArea = true;
                 $scope.scopeArray.push('avgLightArea');
                 break;
@@ -53,11 +53,11 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
                 $scope.cable = true;
                 $scope.scopeArray.push('cable');
                 break;
-            case "Footcandles & Lms":
+            case "FC & Lms":
                 $scope.footcandlesAndLms = true;
                 $scope.scopeArray.push('footcandlesAndLms');
                 break;
-            case "Horizontal Breastline":
+            case "H Breastline":
                 $scope.horizontalBreastline = true;
                 $scope.scopeArray.push('horizontalBreastline');
                 break;
@@ -68,10 +68,6 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
             case "Light Lvl (point)":
                 $scope.lightLvlPoint = true;
                 $scope.scopeArray.push('lightLvlPoint');
-                break;
-            case "Mechanical Adv":
-                $scope.mechanicalAdv = true;
-                $scope.scopeArray.push('mechanicalAdv');
                 break;
             case "Point Load":
                 $scope.pointLoad = true;
@@ -240,9 +236,10 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
     }
     /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
     $scope.openNav = function() {
-        document.getElementById("mySidenav").style.width = "250px";
-        document.getElementById("container").style.marginLeft = "250px";
+        document.getElementById("mySidenav").style.width = "25vw";
+        document.getElementById("container").style.marginLeft = "25vw";
         document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+        $scope.navIsOpen = true;
     }
 
     /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
@@ -250,5 +247,6 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
         document.getElementById("mySidenav").style.width = "0";
         document.getElementById("container").style.marginLeft = "0";
         document.body.style.backgroundColor = "white";
+        $scope.navIsOpen = false;
     }
 }]);
