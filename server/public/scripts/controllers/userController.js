@@ -1,4 +1,4 @@
-myApp.controller('userController', ['$scope', '$http', '$animate', function($scope, $http, $animate) {
+myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', function($scope, $http, $animate, $uibModal) {
     $scope.scopeArray = [];
     var accuracy = 2;
     $scope.mathAnswer = 0;
@@ -17,8 +17,6 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
         "Avg Light Lvl (area)",
         "Beam",
         "Cable",
-        "Candlepower",
-        "Footcandles",
         "Footcandles & Lms",
         "Horizontal Breastline",
         "Length Conv",
@@ -232,5 +230,18 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
       console.log(number);
       console.log(specialName);
       $scope[specialName] = number;
+    }
+    $scope.open = function(_confirmation) {
+      var modalInstance = $uibModal.open({
+        controller: "ModalInstanceCtrl",
+        templateUrl: 'myModalContent.html',
+        resolve:
+        {
+          confirmation: function()
+          {
+              return _confirmation;
+          }
+        }
+      });
     }
 }]);

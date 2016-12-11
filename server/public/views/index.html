@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Lighting Formulas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -9,12 +8,27 @@
     <script type="text/javascript" src="public/vendors/angular.min.js"></script>
     <script type="text/javascript" src="public/vendors/angular-route.min.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-animate.js"></script>
+    <script type="text/javascript" src="public/vendors/ui-bootstrap-tpls-2.3.1.min.js"></script>
     <script type="text/javascript" src="public/scripts/clientApp.js"></script>
     <script type="text/javascript" src="public/scripts/controllers/userController.js"></script>
+    <script type="text/javascript" src="public/scripts/controllers/ModalInstanceCtrl.js"></script>
 </head>
 
 <body ng-app="myApp">
     <main ng-controller="userController">
+      <div>
+        <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+                <h3>Submit Success!</h3>
+            </div>
+            <div class="modal-body">
+                Form Confirmation #: {{confirmation}}
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </script>
+      </div>
         <div class="container">
             <div class="row">
                 <div class="col-md-2 removePaddingRight" ng-show="sidebar">
@@ -25,7 +39,8 @@
                     </ul>
                 </div>
                 <div class="col-md-9 centerpiece">
-                    <button ng-click=showSidebar()>Sidebar</button>
+                    <button ng-click="showSidebar()">Sidebar</button>
+                    <button ng-click="open('Peanut Butter')">Modal</button>
                     <div ng-show="twoPointBridles">
                       <select ng-model="twoPointBridlesChoice" ng-change="checkInput('twoPointBridles', 'twoPointBridlesChoice')">
                       <option value="legLength">Leg Length</option>
@@ -648,5 +663,4 @@
         </div>
     </main>
 </body>
-
 </html>
