@@ -262,7 +262,22 @@
                         mechanicalAdv
                     </div>
                     <div ng-show="pointLoad">
-                        pointLoad
+                      <form>
+                          <div>
+                              <label>Load</label>
+                              <input class="counselorInput" type="number" ng-model="pointLoadLoad" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne'); setValue(doMath(pointLoadLoad, 'subtract', pointLoadLOne), 'pointLoadTensionLTwo')" placeholder="0" />
+                              <label>Distance 1</label>
+                              <input class="counselorInput" type="number" ng-model="pointLoadDisOne" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne')" placeholder="0" />
+                              <label>L1</label>
+                              <input class="counselorInput" type="number" ng-model="pointLoadLOne" ng-change="setValue(doMath(pointLoadLoad, 'subtract', pointLoadLOne), 'pointLoadTensionLTwo')" placeholder="0" />
+                              <label>Span</label>
+                              <input class="counselorInput" type="number" ng-model="pointLoadSpan" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne')" placeholder="0" />
+                              <label>Tension on L1</label>
+                              <input class="counselorInput" type="text" ng-model="pointLoadTensionLOne" placeholder="0" readonly/>
+                              <label>Tension on L2</label>
+                              <input class="counselorInput" type="text" ng-model="pointLoadTensionLTwo" placeholder="0" readonly/>
+                          </div>
+                      </form>
                     </div>
                     <div ng-show="power">
                         power
