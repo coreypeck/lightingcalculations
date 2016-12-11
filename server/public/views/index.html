@@ -314,49 +314,73 @@
                       <form>
                         <div ng-if="trussDead">
                           <label>Load</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <input class="counselorInput" type="number" ng-model="trussDeadLoad" ng-change="doMath(trussDeadLoad, 'times', (trussDeadLOne/trussDeadVOne))" placeholder="0"/>
                           <label>L1</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <input class="counselorInput" type="number" ng-model="trussDeadLOne" ng-change="doMath(trussDeadLoad, 'times', (trussDeadLOne/trussDeadVOne))" placeholder="0"/>
                           <label>V1</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
+                          <input class="counselorInput" type="number" ng-model="trussDeadVOne" ng-change="doMath(trussDeadLoad, 'times', (trussDeadLOne/trussDeadVOne))" placeholder="0"/>
                           <label>Tension on L1</label>
-                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                         </div>
                       </form>
                       <form>
                         <div ng-if="trussSingle">
-                          <label></label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Vertical Distance</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Horizontal Distance</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Horizontal Force</label>
-                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                          <label>Load 1</label>
+                          <input class="counselorInput" type="number" ng-model="trussSingleLoadOne" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')" placeholder="0"/>
+                          <label>Load 2</label>
+                          <input class="counselorInput" type="number" ng-model="trussSingleLoadTwo" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')" placeholder="0"/>
+                          <label>Span</label>
+                          <input class="counselorInput" type="number" ng-model="trussSingleSpan" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')" placeholder="0"/>
+                          <label>Distance 1</label>
+                          <input class="counselorInput" type="number" ng-model="trussSingleDisOne" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')" placeholder="0"/>
+                          <label>Distance 2</label>
+                          <input class="counselorInput" type="number" ng-model="trussSingleDisTwo" ng-change="setValue(doMath((trussSingleLoadOne * trussSingleDisOne), 'div', trussSingleSpan), 'tensionlOne'); setValue(doMath((trussSingleLoadOne * trussSingleDisTwo), 'div', trussSingleSpan), 'tensionlTwo')" placeholder="0"/>
+                          <label>Tension on L1</label>
+                          <input class="counselorInput" type="text" ng-model="tensionlOne" placeholder="0" readonly/>
+                          <label>Tension on L2</label>
+                          <input class="counselorInput" type="text" ng-model="tensionlTwo" placeholder="0" readonly/>
                         </div>
                       </form>
                       <form>
                         <div ng-if="trussMultiple">
-                          <label></label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Vertical Distance</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Horizontal Distance</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Horizontal Force</label>
-                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                          <label>Load 1</label>
+                          <input class="counselorInput" type="number" ng-model="trussMultipleLoadOne" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')" placeholder="0"/>
+                          <label>Load 2</label>
+                          <input class="counselorInput" type="number" ng-model="trussMultipleLoadTwo" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')" placeholder="0"/>
+                          <label>Distance 1</label>
+                          <input class="counselorInput" type="number" ng-model="trussMultipleDisOne" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')" placeholder="0"/>
+                          <label>Distance 2</label>
+                          <input class="counselorInput" type="number" ng-model="trussMultipleDisTwo" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')" placeholder="0"/>
+                          <label>Span</label>
+                          <input class="counselorInput" type="number" ng-model="trussMultipleSpan" ng-change="setValue(doMath(((trussMultipleLoadOne * trussMultipleDisOne) + (trussMultipleLoadTwo * trussMultipleDisTwo)), 'div', trussMultipleSpan), 'trussMultipleTensionOne'); setValue(doMath((trussMultipleLoadOne + trussMultipleLoadTwo), 'subtract', trussMultipleTensionOne), 'trussMultipleTensionTwo')" placeholder="0"/>
+                          <label>Tension on L1</label>
+                          <input class="counselorInput" type="text" ng-model="trussMultipleTensionOne" placeholder="0" readonly/>
+                          <label>Tension on L2</label>
+                          <input class="counselorInput" type="text" ng-model="trussMultipleTensionTwo" placeholder="0" readonly/>
                         </div>
                       </form>
                       <form>
                         <div ng-if="trussCanti">
-                          <label></label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Vertical Distance</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Horizontal Distance</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Horizontal Force</label>
-                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                          <label>Load 1</label>
+                          <input class="counselorInput" type="number" ng-model="trussCantiLoadOne" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')" placeholder="0"/>
+                          <label>Load 2</label>
+                          <input class="counselorInput" type="number" ng-model="trussCantiLoadTwo" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')" placeholder="0"/>
+                          <label>Load 3</label>
+                          <input class="counselorInput" type="number" ng-model="trussCantiLoadThird" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')" placeholder="0"/>
+                          <label>Distance 1</label>
+                          <input class="counselorInput" type="number" ng-model="trussCantiDisOne" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')" placeholder="0"/>
+                          <label>Distance 2</label>
+                          <input class="counselorInput" type="number" ng-model="trussCantiDisTwo" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')" placeholder="0"/>
+                          <label>Distance 3</label>
+                          <input class="counselorInput" type="number" ng-model="trussCantiDisThree" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')" placeholder="0"/>
+                          <label>Span</label>
+                          <input class="counselorInput" type="number" ng-model="trussCantiSpan" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')" placeholder="0"/>
+                          <label>L1</label>
+                          <input class="counselorInput" type="number" ng-model="trussCantiLOne" ng-change="setValue(doMath(((trussCantiLoadOne * trussCantiDisOne) + (trussCantiLoadTwo * trussCantiDisTwo) - (trussCantiLoadThird * trussCantiDisThree)), 'div', trussCantiSpan), 'trussCantiTensionLOne'); setValue(doMath((trussCantiLoadOne + trussCantiLoadTwo + trussCantiLoadThird), 'subtract', trussCantiLOne), 'trussCantiTensionLTwo')" placeholder="0"/>
+                          <label>Tension on L1</label>
+                          <input class="counselorInput" type="text" ng-model="trussCantiTensionLOne" placeholder="0" readonly/>
+                          <label>Tension on L2</label>
+                          <input class="counselorInput" type="text" ng-model="trussCantiTensionLTwo" placeholder="0" readonly/>
                         </div>
                       </form>
                     </div>

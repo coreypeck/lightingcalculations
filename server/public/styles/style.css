@@ -34,4 +34,7 @@
       background-color: #66B9BF;
       border: 2px solid #07889B;
   }
+  .counselorInput{
+    display: block;
+  }
 }
