@@ -105,26 +105,26 @@
                       </select>
                       <form>
                         <div ng-if="beamCenter">
-                          <label>Load</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>L1</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>V1</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Tension on L1</label>
-                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                          <label>Load 1</label>
+                          <input class="counselorInput" type="number" ng-model="beamCenterLoadOne" ng-change="setValue(doMath((beamCenterLoadTwo * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideOne'); setValue(doMath((beamCenterLoadOne * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideTwo')" placeholder="0"/>
+                          <label>Load 2</label>
+                          <input class="counselorInput" type="number" ng-model="beamCenterLoadTwo" ng-change="setValue(doMath((beamCenterLoadTwo * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideOne'); setValue(doMath((beamCenterLoadOne * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideTwo')" placeholder="0"/>
+                          <label>Span</label>
+                          <input class="counselorInput" type="number" ng-model="beamCenterLoadSpan" ng-change="setValue(doMath((beamCenterLoadTwo * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideOne'); setValue(doMath((beamCenterLoadOne * beamCenterLoadSpan), 'div', (beamCenterLoadTwo + beamCenterLoadOne)), 'lengthSideTwo')" placeholder="0"/>
+                          <label>Length of Side 1</label>
+                          <input class="counselorInput" type="text" ng-model="lengthSideOne" placeholder="0" readonly/>
+                          <label>Length of Side 2</label>
+                          <input class="counselorInput" type="text" ng-model="lengthSideTwo" placeholder="0" readonly/>
                         </div>
                       </form>
                       <form>
                         <div ng-if="beamMultiple">
-                          <label>Load</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>L1</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineV" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>V1</label>
-                          <input class="counselorInput" type="number" ng-model="horizontalBreastlineH" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0"/>
-                          <label>Tension on L1</label>
-                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0"/>
+                          <label>Total Weight of Load</label>
+                          <input class="counselorInput" type="number" ng-model="beamMultipleLoad" ng-change="doMath(beamMultipleLoad, 'div', (beamMultipleSupport - 1))" placeholder="0"/>
+                          <label>Number of Supporting Lines</label>
+                          <input class="counselorInput" type="number" ng-model="beamMultipleSupport" ng-change="doMath(beamMultipleLoad, 'div', (beamMultipleSupport - 1))" placeholder="0"/>
+                          <label>Load on Each Line</label>
+                          <input class="counselorInput" type="text" ng-model="mathAnswer" placeholder="0" readonly/>
                         </div>
                       </form>
                     </div>

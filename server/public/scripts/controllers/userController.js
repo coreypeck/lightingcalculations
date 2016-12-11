@@ -149,6 +149,8 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
         $scope[parameter] = true;
     }
 
+//I went this route so that I could pair down some of the complex functionss
+
     $scope.doMath = function(number1, mathType, number2){
       number1 = parseFloat(number1);
       number2 = parseFloat(number2);
@@ -232,8 +234,3 @@ myApp.controller('userController', ['$scope', '$http', '$animate', function($sco
       $scope[specialName] = number;
     }
 }]);
-
-
-//Make a catch for equations that result in infinity
-//Fix Spacing
-//Add Styling
