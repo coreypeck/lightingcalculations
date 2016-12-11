@@ -12,7 +12,8 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
         }
     }
 
-    $scope.categoryArray = ["2-Point Bridles",
+    $scope.categoryArray = [
+        "2-Point Bridles",
         "3-Point Bridles",
         "Avg Light Lvl (area)",
         "Beam",
@@ -51,14 +52,6 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
             case "Cable":
                 $scope.cable = true;
                 $scope.scopeArray.push('cable');
-                break;
-            case "Candlepower":
-                $scope.candlepower = true;
-                $scope.scopeArray.push('candlepower');
-                break;
-            case "Footcandles":
-                $scope.footcandles = true;
-                $scope.scopeArray.push('footcandles');
                 break;
             case "Footcandles & Lms":
                 $scope.footcandlesAndLms = true;
@@ -101,6 +94,7 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
                 $scope.scopeArray.push('weightConv');
                 break;
         }
+        $scope.closeNav();
     }
 
     function makeFalse() {
@@ -243,5 +237,18 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
           }
         }
       });
+    }
+    /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+    $scope.openNav = function() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("container").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+
+    /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+    $scope.closeNav = function() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("container").style.marginLeft = "0";
+        document.body.style.backgroundColor = "white";
     }
 }]);
