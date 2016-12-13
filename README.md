@@ -5,3 +5,4 @@ It's functionality is based around Lighting Formulas that will assist aspiring l
 Better CSS coming soon! Mobile will be available on iPhone only.
 
 Hosted: https://lightingcalculations.herokuapp.com/
+Additional formatting pending
