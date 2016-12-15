@@ -7,3 +7,5 @@ Better CSS coming soon! Mobile will be available on iPhone only.
 Hosted: https://lightingcalculations.herokuapp.com/
 
 Additional formatting pending!
+
+Most Math completed
