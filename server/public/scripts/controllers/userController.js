@@ -236,8 +236,8 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
     }
     /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
     $scope.openNav = function() {
-        document.getElementById("mySidenav").style.width = "25vw";
-        document.getElementById("container").style.marginLeft = "25vw";
+        document.getElementById("mySidenav").style.width = "75vw";
+        document.getElementById("container").style.marginLeft = "75vw";
         document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
         $scope.navIsOpen = true;
     }
