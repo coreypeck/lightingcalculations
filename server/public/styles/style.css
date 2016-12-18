@@ -134,12 +134,15 @@ ul li{
 }
 
 select{
-  color: orange;
-  background-color: orange;
+  margin-left: 2vw;
+  margin-top: 40.5vh;
+  height: 10vh;
+  border: 2px solid black;
+  width: 70vw;
 }
 
 .buttonholder{
-  text-align: center;
-  margin-top: 40vh;
+  float: right;
+  margin-top: 39vh;
   font-size: 45px;
 }
