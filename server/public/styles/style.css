@@ -102,8 +102,8 @@ main{
     background-color: #111;
     overflow-x:auto;
     transition: 0.5s;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
 }
 
 .sidenav a:hover, .offcanvas a:focus{
@@ -121,12 +121,12 @@ main{
 
 ul li{
   text-align: center;
-  margin-top: 3vh;
-  margin-bottom: 3vh;
+  margin-top: 3.2vh;
+  margin-bottom: 3.2vh;
   list-style-type: none;
-  font-size: 20px;
+  font-size: 40px;
   color: white;
-  letter-spacing: 5px;
+  letter-spacing: 10px;
 }
 
 .functionInfo{
