@@ -85,20 +85,21 @@ and (max-device-width : 568px) {
 body {
     font-family: "Lato", sans-serif;
     transition: background-color .5s;
-    height: 100vh;
+    /*height: 100vh;*/
 }
 
 .sidenav {
-    height: 100vh;
+    /*height: 100vh;*/
     width: 0;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: #111;
-    overflow-x: hidden;
+    overflow-x:auto;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 
 .sidenav a:hover, .offcanvas a:focus{
@@ -118,8 +119,9 @@ ul li{
   text-align: center;
   margin-bottom: 25px;
   list-style-type: none;
-  font-size: 35px;
+  font-size: 20px;
   color: white;
+  letter-spacing: 5px;
 }
 
 .functionInfo{
@@ -131,12 +133,20 @@ select{
   background-color: orange;
 }
 
-.centerpiece{
+/*.centerpiece{
   height: 100vh;
   width: 100vh;
-}
+}*/
 
-@media screen and (max-height: 450px) {
+/*.ng-scope{
+  height: 100vh;
+}*/
+
+/*#reduction{
+  height: 5vh;
+}*/
+
+/*@media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
-}
+}*/
