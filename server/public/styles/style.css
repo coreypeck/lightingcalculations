@@ -138,20 +138,8 @@ select{
   background-color: orange;
 }
 
-/*.centerpiece{
-  height: 100vh;
-  width: 100vh;
-}*/
-
-/*.ng-scope{
-  height: 100vh;
-}*/
-
-/*#reduction{
-  height: 5vh;
-}*/
-
-/*@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}*/
+.buttonholder{
+  text-align: center;
+  margin-top: 40vh;
+  font-size: 45px;
+}
