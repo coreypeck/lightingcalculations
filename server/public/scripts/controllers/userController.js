@@ -103,12 +103,12 @@ myApp.controller('userController', ['$scope', '$http', '$animate', '$uibModal', 
 
     $scope.checkInput = function(selectArea, chosenConv) {
         makeFalse();
-        var choice = $scope[chosenConv];
-        if($scope[choice] != false){
-          $scope.scopeArray.push(choice);
+        // var choice = $scope[chosenConv];
+        if($scope[chosenConv] != false){
+          $scope.scopeArray.push(chosenConv);
         }
         $scope[selectArea] = true;
-        $scope[choice] = true;
+        $scope[chosenConv] = true;
     }
 
     $scope.makeRight = function(selected) {

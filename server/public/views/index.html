@@ -44,8 +44,8 @@
                     <button ng-if="!navIsOpen" ng-click="openNav()"><i class="fa fa-bars fa-5x" aria-hidden="true"></i></button>
                     <button ng-if="navIsOpen" ng-click="closeNav()"><i class="fa fa-bars fa-5x" aria-hidden="true"></i></button>
                   </div>
-                    <div ng-show="twoPointBridles">
-                      <select ng-model="twoPointBridlesChoice" ng-change="checkInput('twoPointBridles', 'twoPointBridlesChoice')">
+                    <div ng-if="!navIsOpen" ng-show="twoPointBridles">
+                      <select ng-if="!navIsOpen" ng-model="twoPointBridlesChoice" ng-change="checkInput('twoPointBridles', twoPointBridlesChoice)">
                       <option value="legLength">Leg Length</option>
                       <option value="bridleAngle">Bridle Angle</option>
                       <option value="bridleTension">Tension on Bridles</option>
@@ -117,11 +117,51 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="threePointBridles">
-                        threePointBridles
+                    <div ng-if="!navIsOpen" ng-show="threePointBridles">
+                      <form ng-if="!navIsOpen">
+                          <div>
+                              <h4>P1</h4>
+                              <label>X</label>
+                              <input type="number" class="functionInfo" ng-model="threePointBridlesPOneX" ng-change="findTheSqrt(((threePointBridlesPOneY - threePointBridlesPFourY)*(threePointBridlesPOneY - threePointBridlesPFourY) + ((threePointBridlesPOneX - threePointBridlesPFourX)*(threePointBridlesPOneX - threePointBridlesPFourX)) + ((threePointBridlesPOneZ - threePointBridlesPFourZ)*(threePointBridlesPOneZ - threePointBridlesPFourZ))), 'lengthLegOne')" placeholder="0" />
+                              <label>Y</label>
+                              <input class="functionInfo" type="number" ng-model="threePointBridlesPOneY" ng-change="findTheSqrt(((threePointBridlesPOneY - threePointBridlesPFourY)*(threePointBridlesPOneY - threePointBridlesPFourY) + ((threePointBridlesPOneX - threePointBridlesPFourX)*(threePointBridlesPOneX - threePointBridlesPFourX)) + ((threePointBridlesPOneZ - threePointBridlesPFourZ)*(threePointBridlesPOneZ - threePointBridlesPFourZ))), 'lengthLegOne')" placeholder="0" />
+                              <label>Z</label>
+                              <input type="number" class="functionInfo" ng-model="threePointBridlesPOneZ" ng-change="findTheSqrt(((threePointBridlesPOneY - threePointBridlesPFourY)*(threePointBridlesPOneY - threePointBridlesPFourY) + ((threePointBridlesPOneX - threePointBridlesPFourX)*(threePointBridlesPOneX - threePointBridlesPFourX)) + ((threePointBridlesPOneZ - threePointBridlesPFourZ)*(threePointBridlesPOneZ - threePointBridlesPFourZ))), 'lengthLegOne')" placeholder="0" />
+                              <h4>P2</h4>
+                              <label>X</label>
+                              <input type="number" class="functionInfo" ng-model="threePointBridlesPTwoX" ng-change="findTheSqrt(((threePointBridlesPTwoY - threePointBridlesPFourY)*(threePointBridlesPTwoY - threePointBridlesPFourY) + ((threePointBridlesPTwoX - threePointBridlesPFourX)*(threePointBridlesPTwoX - threePointBridlesPFourX)) + ((threePointBridlesPTwoZ - threePointBridlesPFourZ)*(threePointBridlesPTwoZ - threePointBridlesPFourZ))), 'lengthLegTwo')" placeholder="0" />
+                              <label>Y</label>
+                              <input class="functionInfo" type="number" ng-model="threePointBridlesPTwoY" ng-change="findTheSqrt(((threePointBridlesPTwoY - threePointBridlesPFourY)*(threePointBridlesPTwoY - threePointBridlesPFourY) + ((threePointBridlesPTwoX - threePointBridlesPFourX)*(threePointBridlesPTwoX - threePointBridlesPFourX)) + ((threePointBridlesPTwoZ - threePointBridlesPFourZ)*(threePointBridlesPTwoZ - threePointBridlesPFourZ))), 'lengthLegTwo')" placeholder="0" />
+                              <label>Z</label>
+                              <input type="number" class="functionInfo" ng-model="threePointBridlesPTwoZ" ng-change="findTheSqrt(((threePointBridlesPTwoY - threePointBridlesPFourY)*(threePointBridlesPTwoY - threePointBridlesPFourY) + ((threePointBridlesPTwoX - threePointBridlesPFourX)*(threePointBridlesPTwoX - threePointBridlesPFourX)) + ((threePointBridlesPTwoZ - threePointBridlesPFourZ)*(threePointBridlesPTwoZ - threePointBridlesPFourZ))), 'lengthLegTwo')" placeholder="0" />
+                              <h4>P3</h4>
+                              <label>X</label>
+                              <input type="number" class="functionInfo" ng-model="threePointBridlesPThreeX" ng-change="findTheSqrt(((threePointBridlesPThreeY - threePointBridlesPFourY)*(threePointBridlesPThreeY - threePointBridlesPFourY) + ((threePointBridlesPThreeX - threePointBridlesPFourX)*(threePointBridlesPThreeX - threePointBridlesPFourX)) + ((threePointBridlesPThreeZ - threePointBridlesPFourZ)*(threePointBridlesPThreeZ - threePointBridlesPFourZ))), 'lengthLegThree')" placeholder="0" />
+                              <label>Y</label>
+                              <input class="functionInfo" type="number" ng-model="threePointBridlesPThreeY" ng-change="findTheSqrt(((threePointBridlesPThreeY - threePointBridlesPFourY)*(threePointBridlesPThreeY - threePointBridlesPFourY) + ((threePointBridlesPThreeX - threePointBridlesPFourX)*(threePointBridlesPThreeX - threePointBridlesPFourX)) + ((threePointBridlesPThreeZ - threePointBridlesPFourZ)*(threePointBridlesPThreeZ - threePointBridlesPFourZ))), 'lengthLegThree')" placeholder="0" />
+                              <label>Z</label>
+                              <input type="number" class="functionInfo" ng-model="threePointBridlesPThreeZ" ng-change="findTheSqrt(((threePointBridlesPThreeY - threePointBridlesPFourY)*(threePointBridlesPThreeY - threePointBridlesPFourY) + ((threePointBridlesPThreeX - threePointBridlesPFourX)*(threePointBridlesPThreeX - threePointBridlesPFourX)) + ((threePointBridlesPThreeZ - threePointBridlesPFourZ)*(threePointBridlesPThreeZ - threePointBridlesPFourZ))), 'lengthLegThree')" placeholder="0" />
+                              <h4>P4</h4>
+                              <label>X</label>
+                              <input type="number" class="functionInfo" ng-model="threePointBridlesPFourX" ng-change="findTheSqrt(((threePointBridlesPOneY - threePointBridlesPFourY)*(threePointBridlesPOneY - threePointBridlesPFourY) + ((threePointBridlesPOneX - threePointBridlesPFourX)*(threePointBridlesPOneX - threePointBridlesPFourX)) + ((threePointBridlesPOneZ - threePointBridlesPFourZ)*(threePointBridlesPOneZ - threePointBridlesPFourZ))), 'lengthLegOne'); findTheSqrt(((threePointBridlesPTwoY - threePointBridlesPFourY)*(threePointBridlesPTwoY - threePointBridlesPFourY) + ((threePointBridlesPTwoX - threePointBridlesPFourX)*(threePointBridlesPTwoX - threePointBridlesPFourX)) + ((threePointBridlesPTwoZ - threePointBridlesPFourZ)*(threePointBridlesPTwoZ - threePointBridlesPFourZ))), 'lengthLegTwo'); findTheSqrt(((threePointBridlesPThreeY - threePointBridlesPFourY)*(threePointBridlesPThreeY - threePointBridlesPFourY) + ((threePointBridlesPThreeX - threePointBridlesPFourX)*(threePointBridlesPThreeX - threePointBridlesPFourX)) + ((threePointBridlesPThreeZ - threePointBridlesPFourZ)*(threePointBridlesPThreeZ - threePointBridlesPFourZ))), 'lengthLegThree')" placeholder="0" />
+                              <label>Y</label>
+                              <input class="functionInfo" type="number" ng-model="threePointBridlesPFourY" ng-change="findTheSqrt(((threePointBridlesPOneY - threePointBridlesPFourY)*(threePointBridlesPOneY - threePointBridlesPFourY) + ((threePointBridlesPOneX - threePointBridlesPFourX)*(threePointBridlesPOneX - threePointBridlesPFourX)) + ((threePointBridlesPOneZ - threePointBridlesPFourZ)*(threePointBridlesPOneZ - threePointBridlesPFourZ))), 'lengthLegOne'); findTheSqrt(((threePointBridlesPTwoY - threePointBridlesPFourY)*(threePointBridlesPTwoY - threePointBridlesPFourY) + ((threePointBridlesPTwoX - threePointBridlesPFourX)*(threePointBridlesPTwoX - threePointBridlesPFourX)) + ((threePointBridlesPTwoZ - threePointBridlesPFourZ)*(threePointBridlesPTwoZ - threePointBridlesPFourZ))), 'lengthLegTwo'); findTheSqrt(((threePointBridlesPThreeY - threePointBridlesPFourY)*(threePointBridlesPThreeY - threePointBridlesPFourY) + ((threePointBridlesPThreeX - threePointBridlesPFourX)*(threePointBridlesPThreeX - threePointBridlesPFourX)) + ((threePointBridlesPThreeZ - threePointBridlesPFourZ)*(threePointBridlesPThreeZ - threePointBridlesPFourZ))), 'lengthLegThree')" placeholder="0" />
+                              <label>Z</label>
+                              <input type="number" class="functionInfo" ng-model="threePointBridlesPFourZ" ng-change="findTheSqrt(((threePointBridlesPOneY - threePointBridlesPFourY)*(threePointBridlesPOneY - threePointBridlesPFourY) + ((threePointBridlesPOneX - threePointBridlesPFourX)*(threePointBridlesPOneX - threePointBridlesPFourX)) + ((threePointBridlesPOneZ - threePointBridlesPFourZ)*(threePointBridlesPOneZ - threePointBridlesPFourZ))), 'lengthLegOne'); findTheSqrt(((threePointBridlesPTwoY - threePointBridlesPFourY)*(threePointBridlesPTwoY - threePointBridlesPFourY) + ((threePointBridlesPTwoX - threePointBridlesPFourX)*(threePointBridlesPTwoX - threePointBridlesPFourX)) + ((threePointBridlesPTwoZ - threePointBridlesPFourZ)*(threePointBridlesPTwoZ - threePointBridlesPFourZ))), 'lengthLegTwo'); findTheSqrt(((threePointBridlesPThreeY - threePointBridlesPFourY)*(threePointBridlesPThreeY - threePointBridlesPFourY) + ((threePointBridlesPThreeX - threePointBridlesPFourX)*(threePointBridlesPThreeX - threePointBridlesPFourX)) + ((threePointBridlesPThreeZ - threePointBridlesPFourZ)*(threePointBridlesPThreeZ - threePointBridlesPFourZ))), 'lengthLegThree')" placeholder="0" />
+
+
+
+                              <label>Length Leg One</label>
+                              <input type="text" class="functionInfo" value="{{lengthLegOne}}" placeholder="0" readonly/>
+                              <label>Length Leg Two</label>
+                              <input type="text" class="functionInfo" value="{{lengthLegTwo}}" placeholder="0" readonly/>
+                              <label>Length Leg Three</label>
+                              <input type="text" class="functionInfo" value="{{lengthLegThree}}" placeholder="0" readonly/>
+                          </div>
+                      </form>
                     </div>
-                    <div ng-show="avgLightArea">
-                        <select ng-model="avgLightAreaChoice" ng-change="checkInput('avgLightArea', 'avgLightAreaChoice')">
+                    <div ng-if="!navIsOpen" ng-show="avgLightArea">
+                        <select ng-if="!navIsOpen" ng-model="avgLightAreaChoice" ng-change="checkInput('avgLightArea', avgLightAreaChoice)">
                       <option value="avgLightAreaFixtures">Avg Illumination (No. of Fixtures)</option>
                       <option value="avgLightAreaTotal">Avg Illumination (Total Lamps)</option>
                       <option value="avgLightAreaLamps">Avg Illumination (Lamps in One Fixture)</option>
@@ -157,8 +197,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="beam">
-                        <select ng-model="beamChoice" ng-change="checkInput('beam', 'beamChoice')">
+                    <div ng-if="!navIsOpen" ng-show="beam">
+                        <select ng-if="!navIsOpen" ng-model="beamChoice" ng-change="checkInput('beam', beamChoice)">
                       <option value="beamCenter">Center of Gravity (2 Loads)</option>
                       <option value="beamMultiple">Load on Multiple Lines</option>
                       </select>
@@ -190,8 +230,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="cable">
-                        <select ng-model="cableChoice" ng-change="checkInput('cable', 'cableChoice')">
+                    <div ng-if="!navIsOpen" ng-show="cable">
+                        <select ng-if="!navIsOpen" ng-model="cableChoice" ng-change="checkInput('cable', cableChoice)">
                       <option value="maxOffDis">Max Offset Distance</option>
                       <option value="fleetAng">Fleet Angle</option>
                       <option value="sheaveDia">Sheave Diameter</option>
@@ -239,8 +279,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="footcandlesAndLms">
-                        <select ng-model="footcandlesAndLmsChoice" ng-change="checkInput('footcandlesAndLms', 'footcandlesAndLmsChoice')">
+                    <div ng-if="!navIsOpen" ng-show="footcandlesAndLms">
+                        <select ng-if="!navIsOpen" ng-model="footcandlesAndLmsChoice" ng-change="checkInput('footcandlesAndLms', footcandlesAndLmsChoice)">
                       <option value="footcandlesAndLmsFC">Footcandles</option>
                       <option value="footcandlesAndLmsOneLx">1 Lux</option>
                       <option value="footcandlesAndLmsLX">Lux</option>
@@ -285,8 +325,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="horizontalBreastline">
-                        <form>
+                    <div ng-if="!navIsOpen" ng-show="horizontalBreastline">
+                        <form ng-if="!navIsOpen">
                             <div ng-if="horizontalBreastline">
                                 <label>Load</label>
                                 <input class="functionInfo" type="number" ng-model="horizontalBreastlineLoad" ng-change="doMath(horizontalBreastlineLoad, 'times', (horizontalBreastlineH/horizontalBreastlineV))" placeholder="0" />
@@ -299,8 +339,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="lengthConv">
-                        <select ng-model="lengthConvChoice" ng-change="checkInput('lengthConv', 'lengthConvChoice')">
+                    <div ng-if="!navIsOpen" ng-show="lengthConv">
+                        <select ng-if="!navIsOpen" ng-model="lengthConvChoice" ng-change="checkInput('lengthConv', lengthConvChoice)">
                         <option value="feetToMeterRight">Feet to Meter</option>
                         <option value="inchToCentiRight">Inch to Centimeter</option>
                         <option value="inchToMiliRight">Inch to Milimeter</option>
@@ -354,8 +394,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="lightLvlPoint">
-                        <select ng-model="lightLvlPointChoice" ng-change="checkInput('lightLvlPoint', 'lightLvlPointChoice')">
+                    <div ng-if="!navIsOpen" ng-show="lightLvlPoint">
+                        <select ng-if="!navIsOpen" ng-model="lightLvlPointChoice" ng-change="checkInput('lightLvlPoint', lightLvlPointChoice)">
                         <option value="lightLvlPointFC">Footcandles</option>
                         <option value="lightLvlPointHFC">Horizontal Footcandles</option>
                         <option value="lightLvlPointVFC">Vertical Footcandles</option>
@@ -402,8 +442,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="pointLoad">
-                        <form>
+                    <div ng-if="!navIsOpen" ng-show="pointLoad">
+                        <form ng-if="!navIsOpen">
                             <div>
                                 <label>Load</label>
                                 <input class="functionInfo" type="number" ng-model="pointLoadLoad" ng-change="setValue(doMath(pointLoadLoad, 'times', (pointLoadDisOne/pointLoadSpan)), 'pointLoadTensionLOne'); setValue(doMath(pointLoadLoad, 'subtract', pointLoadLOne), 'pointLoadTensionLTwo')"
@@ -421,8 +461,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="power">
-                        <select ng-model="powerChoice" ng-change="checkInput('power', 'powerChoice')">
+                    <div ng-if="!navIsOpen" ng-show="power">
+                        <select ng-if="!navIsOpen" ng-model="powerChoice" ng-change="checkInput('power', powerChoice)">
                         <!--Goes back and forth-->
                       <option value="powerAmpsToWatts">Amps to Watts</option>
                       <option value="powerDemands">Power Demands</option>
@@ -514,8 +554,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="resultantForces">
-                        <select ng-model="resultantForcesChoice" ng-change="checkInput('resultantForces', 'resultantForcesChoice')">
+                    <div ng-if="!navIsOpen" ng-show="resultantForces">
+                        <select ng-if="!navIsOpen" ng-model="resultantForcesChoice" ng-change="checkInput('resultantForces', resultantForcesChoice)">
                       <option value="rFTimesLoad">Load * SOA</option>
                       <option value="rFStat">Stationary Pulley</option>
                       <option value="rFMove">Moving Pulley</option>
@@ -551,8 +591,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="truss">
-                        <select ng-model="trussChoice" ng-change="checkInput('truss', 'trussChoice')">
+                    <div ng-if="!navIsOpen" ng-show="truss">
+                        <select ng-if="!navIsOpen" ng-model="trussChoice" ng-change="checkInput('truss', trussChoice)">
                       <option value="trussDead">Dead Hang Load on Truss (One End)</option>
                       <option value="trussSingle">Single Load on Truss</option>
                       <option value="trussMultiple">Multiple Loads on Truss</option>
@@ -649,8 +689,8 @@
                             </div>
                         </form>
                     </div>
-                    <div ng-show="weightConv">
-                        <select ng-model="weightConvChoice" ng-change="checkInput('weightConv', 'weightConvChoice')">
+                    <div ng-if="!navIsOpen" ng-show="weightConv">
+                        <select ng-if="!navIsOpen" ng-model="weightConvChoice" ng-change="checkInput('weightConv', weightConvChoice)">
                       <option value="lbToKNRight">Lbs to KiloNewtons</option>
                       <option value="lbToKGRight">Lbs to Kilograms</option>
                       </select>
@@ -697,7 +737,5 @@
 
 <!-- <button ng-click="open('Peanut Butter')">Modal</button> -->
 <!-- Current Known Errors/TODO:
-Extra blank when Select is first opened
-When an option is chosen from a dropdown menu, it will be pushed down to the bottom of the page. Possibly hide it when the menu button is hit?
 Sidebar is set and working, but the equations need formatting
-Three point bridles is the only math that needs to be completed -->
+Power is incomplete -->
